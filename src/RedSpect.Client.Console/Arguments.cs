@@ -2,91 +2,82 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Specialized;
-using System.Text.RegularExpressions;
 
 namespace RedSpect.Client.Console
 {
     public class Arguments
     {
 
-        private StringDictionary Parameters;
-
-        public Arguments(string commandLine)
+        public Arguments(string arguments)
         {
-            Name = commandLine.Substring(0, commandLine.IndexOf(' ') + 1);
-            string args = commandLine.Remove(0, commandLine.IndexOf(' ') + 1);
+            if (arguments.Trim().ToLower() == "exit")
+            {
+                IsExit = true;
+            }
+            else
+            {
+                List<string> commandSplit = new List<string>(Parse(arguments));
+                CommandName = commandSplit[0].ToLower();
+                commandSplit.RemoveAt(0);
+                Parameters = commandSplit.ToArray();
+                IsExit = false;
+            }
+        }
 
-            Parameters = new StringDictionary();
-            Regex Spliter = new Regex(@"^-{1,2}|^/|=|:", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public string[] Parameters { get; set; }
+        public string CommandName { get; private set; }
+        public bool IsExit { get; set; }
 
-            Regex Remover = new Regex(@"^['""]?(.*?)['""]?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public string[] this[int i]
+        {
+            get { return Parameters; }
+        }
 
-            string Parameter = null;
-            string[] Parts;
-
-                Parts = Spliter.Split(args, 3);
-
-                switch (Parts.Length)
+        public static string[] Parse(string str)
+        {
+            if (str == null || !(str.Length > 0)) return new string[0];
+            int idx = str.Trim().IndexOf(" ");
+            if (idx == -1) return new string[] { str };
+            int count = str.Length;
+            List<string> list = new List<string>();
+            while (count > 0)
+            {
+                if (str[0] == '"')
                 {
-                    case 1:
-                        if (Parameter != null)
-                        {
-                            if (!Parameters.ContainsKey(Parameter))
-                            {
-                                Parts[0] =
-                                    Remover.Replace(Parts[0], "$1");
-
-                                Parameters.Add(Parameter, Parts[0]);
-                            }
-                            Parameter = null;
-                        }
-
-                        break;
-                    case 2:
-                        if (Parameter != null)
-                        {
-                            if (!Parameters.ContainsKey(Parameter))
-                                Parameters.Add(Parameter, "true");
-                        }
-                        Parameter = Parts[1];
-                        break;
-
-                    case 3:
-                        if (Parameter != null)
-                        {
-                            if (!Parameters.ContainsKey(Parameter))
-                                Parameters.Add(Parameter, "true");
-                        }
-
-                        Parameter = Parts[1];
-
-                        if (!Parameters.ContainsKey(Parameter))
-                        {
-                            Parts[2] = Remover.Replace(Parts[2], "$1");
-                            Parameters.Add(Parameter, Parts[2]);
-                        }
-
-                        Parameter = null;
-                        break;
+                    int temp = str.IndexOf("\"", 1, str.Length - 1);
+                    while (str[temp - 1] == '\\')
+                    {
+                        temp = str.IndexOf("\"", temp + 1, str.Length - temp - 1);
+                    }
+                    idx = temp + 1;
                 }
-            
-            
-            if (Parameter != null)
-            {
-                if (!Parameters.ContainsKey(Parameter))
-                    Parameters.Add(Parameter, "true");
+                if (str[0] == '\'')
+                {
+                    int temp = str.IndexOf("\'", 1, str.Length - 1);
+                    while (str[temp - 1] == '\\')
+                    {
+                        temp = str.IndexOf("\'", temp + 1, str.Length - temp - 1);
+                    }
+                    idx = temp + 1;
+                }
+                string s = str.Substring(0, idx);
+                int left = count - idx;
+                str = str.Substring(idx, left).Trim();
+                list.Add(s.Trim('"'));
+                count = str.Length;
+                idx = str.IndexOf(" ");
+                if (idx == -1)
+                {
+                    string add = str.Trim('"', ' ');
+                    if (add.Length > 0)
+                    {
+                        list.Add(add);
+                    }
+                    break;
+                }
             }
+            return list.ToArray();
         }
 
-        public string Name { get; set; }
-
-        public string this[string Param]
-        {
-            get
-            {
-                return (Parameters[Param]);
-            }
-        }
     }
 }

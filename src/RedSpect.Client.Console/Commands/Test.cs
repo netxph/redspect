@@ -19,7 +19,12 @@ namespace RedSpect.Client.Console.Commands
         [Command("Say")]
         public void Say(object message)
         {
-            System.Console.WriteLine(message.ToString());
+            List<string> messages = new List<string>((IEnumerable<string>)message);
+
+            foreach (var msg in messages)
+            {
+                System.Console.WriteLine(msg);
+            }
         }
     }
 }

@@ -13,19 +13,8 @@ namespace RedSpect.Client.Console
             System.Console.WriteLine("RedSpect 1.0 - .NET Application Inspector");
             System.Console.WriteLine("Alpha version. Not ready for production yet.");
             System.Console.WriteLine();
-            
-            string commandLine = null;
 
-            do
-            {
-                System.Console.Write(CommandManager.Prompt);
-                commandLine = System.Console.ReadLine();
-
-                CommandManager.Execute(commandLine, "Hello World");
-
-            } while (commandLine.ToLower() != "exit");
-            
-
+            Host.Run();
         }
     }
 }

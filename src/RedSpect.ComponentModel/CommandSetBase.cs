@@ -42,7 +42,7 @@ namespace RedSpect.ComponentModel
                 {
                     foreach (var attribute in attributes)
                     {
-                        commands.Add(((CommandAttribute)attribute).Name, new RelayCommand((Action<object>)Delegate.CreateDelegate(typeof(Action<object>), this, method)));
+                        commands.Add(((CommandAttribute)attribute).Name.ToLower(), new RelayCommand((Action<object>)Delegate.CreateDelegate(typeof(Action<object>), this, method)));
                     }
                 }
             }

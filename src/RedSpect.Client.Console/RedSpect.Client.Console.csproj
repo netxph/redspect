@@ -48,6 +48,7 @@
     <Compile Include="CommandManager.cs" />
     <Compile Include="Commands\Basic.cs" />
     <Compile Include="Commands\Test.cs" />
+    <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

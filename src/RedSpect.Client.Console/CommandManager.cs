@@ -32,7 +32,10 @@ namespace RedSpect.Client.Console
 
         public static void Execute(string commandName, object parameter)
         {
-            CurrentCommandSet.Commands[commandName].Execute(parameter);
+            if (!string.IsNullOrEmpty(commandName))
+            {
+                CurrentCommandSet.Commands[commandName].Execute(parameter);
+            }
         }
 
         public static string Prompt 
