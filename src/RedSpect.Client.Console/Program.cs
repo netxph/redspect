@@ -10,8 +10,8 @@ namespace RedSpect.Client.Console
         static void Main(string[] args)
         {
 
-            System.Console.WriteLine("RedSpect 1.0 - .NET Application Inspector");
-            System.Console.WriteLine("Alpha version. Not ready for production yet.");
+            System.Console.WriteLine("RedSpect [1.0] .NET Application Inspector");
+            System.Console.WriteLine("ALPHA Version: Use at your own RISK!!!");
             System.Console.WriteLine();
 
             Host.Run();

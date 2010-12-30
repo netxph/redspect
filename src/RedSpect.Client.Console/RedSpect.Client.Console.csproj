@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="CommandManager.cs" />
-    <Compile Include="Commands\Basic.cs" />
+    <Compile Include="Commands\CoreCommands.cs" />
     <Compile Include="Commands\ConsoleTest.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />

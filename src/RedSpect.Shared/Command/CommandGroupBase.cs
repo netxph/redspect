@@ -52,7 +52,10 @@ namespace RedSpect.Shared.Command
         }
 
 
-        public abstract void Test();
+        public virtual void Test()
+        {
+            System.Console.WriteLine(string.Format("[{0}] Command group is enabled.", Name));
+        }
         
     }
 }

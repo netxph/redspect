@@ -4,37 +4,54 @@ using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
 using RedSpect.Shared.Interfaces;
+using System.Windows.Input;
 
 namespace RedSpect.Client.Console
 {
     public class CommandManager
     {
 
-        public static ICommandGroup CurrentCommandGroup { get; set; }
-        public static Dictionary<string, ICommandGroup> CommandGroups { get; set; }
+        private static Dictionary<string, ICommandGroup> _commandGroups = null;
+        private static Dictionary<string, ICommand> _commands = null;
+
+        public static event EventHandler Exiting;
 
         static CommandManager()
         {
-            ICommandGroup basic = new Basic();
-            ICommandGroup test = new ConsoleTest();
 
-            CommandGroups = new Dictionary<string, ICommandGroup>();
-            CommandGroups.Add(basic.Name, basic);
-            CommandGroups.Add(test.Name, test);
+            _commandGroups = new Dictionary<string, ICommandGroup>();
+            _commands = new Dictionary<string, ICommand>();
 
-            CurrentCommandGroup = test;
+        }
+
+        public static void RegisterCommandGroup(ICommandGroup commandGroup)
+        {
+            _commandGroups.Add(commandGroup.Name, commandGroup);
+
+            foreach (string key in commandGroup.Commands.Keys)
+            {
+                _commands.Add(key, commandGroup.Commands[key]);
+            }
         }
 
         public static void Set(string name)
         {
-            CurrentCommandGroup = CommandGroups[name];
+
         }
 
         public static void Execute(string commandName, object parameter)
         {
             if (!string.IsNullOrEmpty(commandName))
             {
-                CurrentCommandGroup.Commands[commandName].Execute(parameter);
+                _commands[commandName].Execute(parameter);
+            }
+        }
+
+        public static void Exit()
+        {
+            if (Exiting != null)
+            {
+                Exiting(null, new EventArgs());
             }
         }
 
@@ -42,7 +59,7 @@ namespace RedSpect.Client.Console
         {
             get
             {
-                return string.Format("[{0}] > ", CurrentCommandGroup.Name);
+                return string.Format("[{0}] > ", DateTime.Now.ToString("HH:mm:ss"));
             }
         }
     }

@@ -10,23 +10,14 @@ namespace RedSpect.Client.Console
 
         public Arguments(string arguments)
         {
-            if (arguments.Trim().ToLower() == "exit")
-            {
-                IsExit = true;
-            }
-            else
-            {
-                List<string> commandSplit = new List<string>(Parse(arguments));
-                CommandName = commandSplit[0].ToLower();
-                commandSplit.RemoveAt(0);
-                Parameters = commandSplit.ToArray();
-                IsExit = false;
-            }
+            List<string> commandSplit = new List<string>(Parse(arguments));
+            CommandName = commandSplit[0].ToLower();
+            commandSplit.RemoveAt(0);
+            Parameters = commandSplit.ToArray();
         }
 
         public string[] Parameters { get; set; }
         public string CommandName { get; private set; }
-        public bool IsExit { get; set; }
 
         public string[] this[int i]
         {
