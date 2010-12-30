@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace RedSpect.ComponentModel
+namespace RedSpect.Shared.Interfaces
 {
-    public interface ICommandSet
+    public interface ICommandGroup
     {
 
         string Name { get; }
         Dictionary<string, ICommand> Commands { get; }
+
+        void Test();
 
     }
 }

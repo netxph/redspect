@@ -47,16 +47,12 @@
     <Compile Include="Arguments.cs" />
     <Compile Include="CommandManager.cs" />
     <Compile Include="Commands\Basic.cs" />
-    <Compile Include="Commands\Test.cs" />
+    <Compile Include="Commands\ConsoleTest.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RedSpect.ComponentModel\RedSpect.ComponentModel.csproj">
-      <Project>{EBD09ABE-B681-4EAB-8A3C-C4BE75C6B876}</Project>
-      <Name>RedSpect.ComponentModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RedSpect.Shared\RedSpect.Shared.csproj">
       <Project>{32295AAB-F8BF-4C94-BD27-49B80E880F2F}</Project>
       <Name>RedSpect.Shared</Name>

@@ -13,16 +13,16 @@ namespace RedSpect.Shared
     public class ApplicationProbe
     {
 
-        private static Dictionary<string, IInspectorCommand> _inspectorCommands = new Dictionary<string, IInspectorCommand>();
+        private static Dictionary<string, IInspectorCommandGroup> _inspectorCommands = new Dictionary<string, IInspectorCommandGroup>();
 
-        public static Dictionary<string, IInspectorCommand> InspectorCommands
+        public static Dictionary<string, IInspectorCommandGroup> InspectorCommands
         {
             get { return _inspectorCommands; }
         }
 
-        public static void RegisterCommands(IInspectorCommand commandSet)
+        public static void RegisterCommands(IInspectorCommandGroup commandGroup)
         {
-            _inspectorCommands.Add(commandSet.Name, commandSet);
+            _inspectorCommands.Add(commandGroup.Name, commandGroup);
         }
 
         public static void Start()

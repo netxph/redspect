@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace RedSpect.ComponentModel
+namespace RedSpect.Shared.Command
 {
     public class RelayCommand : ICommand
     {

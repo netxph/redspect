@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared;
+using System.Windows.Input;
 
 namespace RedSpect.HostTest.Win
 {
-    public class TestCommand : IInspectorCommand
+    public class TestCommand : IInspectorCommandGroup
     {
         public string Name
         {
@@ -17,6 +18,12 @@ namespace RedSpect.HostTest.Win
         public void Test()
         {
             Injection.WriteForm("Message from outer application.");
+        }
+
+
+        public Dictionary<string, ICommand> Commands
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

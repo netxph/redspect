@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RedSpect.Shared
+namespace RedSpect.Shared.Command
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class InspectorCommandAttribute : Attribute
+    public class CommandAttribute : Attribute
     {
 
-        public InspectorCommandAttribute(string name)
+        public CommandAttribute(string name)
         {
             Name = name;
         }
 
         public string Name { get; set; }
-        
+
     }
 }

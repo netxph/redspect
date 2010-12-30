@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Reflection;
+using RedSpect.Shared.Interfaces;
 
-namespace RedSpect.ComponentModel
+namespace RedSpect.Shared.Command
 {
-    public abstract class CommandSetBase : ICommandSet
+    public abstract class CommandGroupBase : ICommandGroup
     {
         
 
@@ -49,5 +50,9 @@ namespace RedSpect.ComponentModel
 
             return commands;
         }
+
+
+        public abstract void Test();
+        
     }
 }

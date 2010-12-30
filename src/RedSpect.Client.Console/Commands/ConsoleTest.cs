@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RedSpect.ComponentModel;
 using System.Windows.Input;
 using RedSpect.Shared.Interfaces;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Client.Console.Commands
 {
-    public class Test : CommandSetBase
+    public class ConsoleTest : CommandGroupBase
     {
-        const string COMMAND_SET_NAME = "Test";
+        const string COMMAND_SET_NAME = "ConsoleTest";
 
         public override string Name
         {
@@ -35,12 +35,16 @@ namespace RedSpect.Client.Console.Commands
             System.Console.WriteLine(inspector.HostDetails());
         }
 
-        [Command("TestCommandSet")]
+        [Command("TestSet")]
         public void TestCommandSet(object args)
         {
             IInspectorService inspector = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
             inspector.TestCommandSet("WindowsTest");
         }
 
+        public override void Test()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

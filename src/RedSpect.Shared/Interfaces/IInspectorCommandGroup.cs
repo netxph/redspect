@@ -5,11 +5,7 @@ using System.Text;
 
 namespace RedSpect.Shared.Interfaces
 {
-    public interface IInspectorCommand
+    public interface IInspectorCommandGroup : ICommandGroup
     {
-
-        string Name { get; }
-        void Test();
-
     }
 }
