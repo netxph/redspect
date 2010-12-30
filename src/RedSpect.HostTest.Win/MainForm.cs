@@ -18,7 +18,14 @@ namespace RedSpect.HostTest.Win
 
         public void WriteLine(string message)
         {
-            _textConsole.AppendText(string.Format("[{0}]>> {1}\r\n", DateTime.Now.ToString("ddMMMyyyy HH:mm:ss"), message));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => WriteLine(message)));
+            }
+            else
+            {
+                _textConsole.AppendText(string.Format("[{0}]>> {1}\r\n", DateTime.Now.ToString("ddMMMyyyy HH:mm:ss"), message));
+            }
         }
 
         private void _buttonAddText_Click(object sender, EventArgs e)

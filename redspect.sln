@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.Client.Console", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.HostTest.Win", "src\RedSpect.HostTest.Win\RedSpect.HostTest.Win.csproj", "{F4C7E811-E383-4652-B4C2-BCA07E6CB7CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.Shared", "src\RedSpect.Shared\RedSpect.Shared.csproj", "{32295AAB-F8BF-4C94-BD27-49B80E880F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{F4C7E811-E383-4652-B4C2-BCA07E6CB7CD}.Release|Mixed Platforms.Build.0 = Release|x86
 		{F4C7E811-E383-4652-B4C2-BCA07E6CB7CD}.Release|x86.ActiveCfg = Release|x86
 		{F4C7E811-E383-4652-B4C2-BCA07E6CB7CD}.Release|x86.Build.0 = Release|x86
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{32295AAB-F8BF-4C94-BD27-49B80E880F2F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

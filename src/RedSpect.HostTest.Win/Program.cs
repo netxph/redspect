@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using RedSpect.Shared;
 
 namespace RedSpect.HostTest.Win
 {
@@ -15,7 +16,8 @@ namespace RedSpect.HostTest.Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            ApplicationProbe.RegisterCommands(new TestCommand());
+            ApplicationProbe.Start();
             Application.Run(Injection.MainForm);
         }
     }

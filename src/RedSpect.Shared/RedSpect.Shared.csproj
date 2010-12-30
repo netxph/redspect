@@ -2,30 +2,27 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0427B7BE-F357-4C1F-A692-F8494280C008}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{32295AAB-F8BF-4C94-BD27-49B80E880F2F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RedSpect.Client.Console</RootNamespace>
-    <AssemblyName>RedSpect.Client.Console</AssemblyName>
+    <RootNamespace>RedSpect.Shared</RootNamespace>
+    <AssemblyName>RedSpect.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,23 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arguments.cs" />
-    <Compile Include="CommandManager.cs" />
-    <Compile Include="Commands\Basic.cs" />
-    <Compile Include="Commands\Test.cs" />
-    <Compile Include="Host.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ApplicationProbe.cs" />
+    <Compile Include="InspectorCommandAttribute.cs" />
+    <Compile Include="InspectorService.cs" />
+    <Compile Include="Interfaces\IInspectorCommand.cs" />
+    <Compile Include="Interfaces\IInspectorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RedSpect.ComponentModel\RedSpect.ComponentModel.csproj">
-      <Project>{EBD09ABE-B681-4EAB-8A3C-C4BE75C6B876}</Project>
-      <Name>RedSpect.ComponentModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RedSpect.Shared\RedSpect.Shared.csproj">
-      <Project>{32295AAB-F8BF-4C94-BD27-49B80E880F2F}</Project>
-      <Name>RedSpect.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

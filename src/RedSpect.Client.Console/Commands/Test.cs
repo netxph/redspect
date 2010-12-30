@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RedSpect.ComponentModel;
 using System.Windows.Input;
+using RedSpect.Shared.Interfaces;
 
 namespace RedSpect.Client.Console.Commands
 {
@@ -26,5 +27,20 @@ namespace RedSpect.Client.Console.Commands
                 System.Console.WriteLine(msg);
             }
         }
+
+        [Command("TestConnect")]
+        public void TestConnect(object args)
+        {
+            IInspectorService inspector = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+            System.Console.WriteLine(inspector.HostDetails());
+        }
+
+        [Command("TestCommandSet")]
+        public void TestCommandSet(object args)
+        {
+            IInspectorService inspector = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+            inspector.TestCommandSet("WindowsTest");
+        }
+
     }
 }
