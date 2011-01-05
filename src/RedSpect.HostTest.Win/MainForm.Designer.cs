@@ -92,6 +92,7 @@
             this._buttonSetValue.TabIndex = 4;
             this._buttonSetValue.Text = "&Set Value of X";
             this._buttonSetValue.UseVisualStyleBackColor = true;
+            this._buttonSetValue.Click += new System.EventHandler(this._buttonSetValue_Click);
             // 
             // MainForm
             // 

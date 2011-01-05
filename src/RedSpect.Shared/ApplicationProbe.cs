@@ -35,7 +35,7 @@ namespace RedSpect.Shared
             properties["authorizedGroup"] = "Everyone";
 
             ChannelServices.RegisterChannel(new IpcChannel(properties, clientProvider, serverProvider), false);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(InspectorService), "InspectorService", WellKnownObjectMode.Singleton);
+            RemotingConfiguration.RegisterWellKnownServiceType(typeof(IPCInspectProvider), "InspectorService", WellKnownObjectMode.Singleton);
         }
 
     }

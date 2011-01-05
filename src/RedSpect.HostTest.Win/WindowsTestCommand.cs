@@ -11,12 +11,6 @@ namespace RedSpect.HostTest.Win
 {
     public class WindowsTestCommand : CommandGroupBase, IInspectorCommandGroup
     {
-
-        public WindowsTestCommand()
-        {
-            Initialize();
-        }
-
         public override string Name
         {
             get { return "WindowsTest"; }
@@ -28,7 +22,7 @@ namespace RedSpect.HostTest.Win
         }
 
         [Command("WriteValueOfX")]
-        public void WriteValueOfX()
+        public void WriteValueOfX(object args)
         {
             Injection.WriteForm(string.Format("The value of X is {0}", Injection.X));
         }

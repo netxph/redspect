@@ -48,9 +48,9 @@
     <Compile Include="Command\CommandGroupBase.cs" />
     <Compile Include="Interfaces\ICommandGroup.cs" />
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="InspectorService.cs" />
+    <Compile Include="IPCInspectProvider.cs" />
     <Compile Include="Interfaces\IInspectorCommandGroup.cs" />
-    <Compile Include="Interfaces\IInspectorService.cs" />
+    <Compile Include="Interfaces\IInspectProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

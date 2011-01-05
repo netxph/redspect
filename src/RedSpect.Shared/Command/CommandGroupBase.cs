@@ -29,11 +29,6 @@ namespace RedSpect.Shared.Command
             }
         }
 
-        protected void Initialize()
-        {
-            _commands = OnGetLocalCommands();
-        }
-
         protected virtual Dictionary<string, ICommand> OnGetLocalCommands()
         {
             Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();

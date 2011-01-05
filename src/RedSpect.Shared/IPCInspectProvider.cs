@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace RedSpect.Shared
 {
-    public class InspectorService : MarshalByRefObject, IInspectorService
+    public class IPCInspectProvider : MarshalByRefObject, IInspectProvider
     {
         private Dictionary<string, ICommand> _commands = null;
 
@@ -61,7 +61,6 @@ namespace RedSpect.Shared
                 }
             }
         }
-
 
         public bool ContainsCommand(string commandName)
         {

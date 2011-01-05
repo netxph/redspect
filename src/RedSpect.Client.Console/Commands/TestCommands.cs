@@ -31,14 +31,14 @@ namespace RedSpect.Client.Console.Commands
         [Command("TestConnect")]
         public void TestConnect(object args)
         {
-            IInspectorService inspector = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+            IInspectProvider inspector = Activator.GetObject(typeof(IInspectProvider), "ipc://Diagnostics/InspectorService") as IInspectProvider;
             System.Console.WriteLine(inspector.HostDetails());
         }
 
         [Command("TestSet")]
         public void TestCommandSet(object args)
         {
-            IInspectorService inspector = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+            IInspectProvider inspector = Activator.GetObject(typeof(IInspectProvider), "ipc://Diagnostics/InspectorService") as IInspectProvider;
             inspector.TestCommandSet("WindowsTest");
         }
 

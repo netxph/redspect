@@ -13,7 +13,7 @@ namespace RedSpect.Client.Console
 
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
-        private static IInspectorService _inspectorService = null;
+        private static IInspectProvider _inspectorService = null;
         private static bool _isConnected = false;
 
         public static event EventHandler Exiting;
@@ -81,13 +81,13 @@ namespace RedSpect.Client.Console
             }
         }
 
-        protected static IInspectorService InspectorService
+        protected static IInspectProvider InspectorService
         {
             get
             {
                 if (_inspectorService == null)
                 {
-                    _inspectorService = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+                    _inspectorService = Activator.GetObject(typeof(IInspectProvider), "ipc://Diagnostics/InspectorService") as IInspectProvider;
                 }
 
                 return _inspectorService;

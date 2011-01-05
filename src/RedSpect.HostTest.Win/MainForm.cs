@@ -37,5 +37,10 @@ namespace RedSpect.HostTest.Win
         {
             this.Close();
         }
+
+        private void _buttonSetValue_Click(object sender, EventArgs e)
+        {
+            Injection.X = int.Parse(_textXValue.Text);
+        }
     }
 }

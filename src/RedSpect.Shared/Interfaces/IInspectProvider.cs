@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace RedSpect.Shared.Interfaces
 {
-    public interface IInspectorService
+    public interface IInspectProvider
     {
 
         string HostDetails();
