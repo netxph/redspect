@@ -47,7 +47,7 @@
     <Compile Include="Arguments.cs" />
     <Compile Include="CommandManager.cs" />
     <Compile Include="Commands\CoreCommands.cs" />
-    <Compile Include="Commands\ConsoleTest.cs" />
+    <Compile Include="Commands\TestCommands.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

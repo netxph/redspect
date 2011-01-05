@@ -16,7 +16,7 @@ namespace RedSpect.HostTest.Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ApplicationProbe.RegisterCommands(new TestCommand());
+            ApplicationProbe.RegisterCommands(new WindowsTestCommand());
             ApplicationProbe.Start();
             Application.Run(Injection.MainForm);
         }

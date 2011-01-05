@@ -24,6 +24,18 @@ namespace RedSpect.Client.Console.Commands
             CommandManager.Exit();
         }
 
+        [Command("Connect")]
+        public void Connect(object args)
+        {
+            CommandManager.Connect();
+        }
+
+        [Command("Disconnect")]
+        public void Disconnect(object args)
+        {
+            CommandManager.Disconnect();
+        }
+
         [Command("About")]
         public void About(object args)
         {

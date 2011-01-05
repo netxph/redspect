@@ -8,9 +8,9 @@ using RedSpect.Shared.Command;
 
 namespace RedSpect.Client.Console.Commands
 {
-    public class ConsoleTest : CommandGroupBase
+    public class TestCommands : CommandGroupBase
     {
-        const string COMMAND_SET_NAME = "ConsoleTest";
+        const string COMMAND_SET_NAME = "Test";
 
         public override string Name
         {

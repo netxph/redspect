@@ -13,6 +13,8 @@ namespace RedSpect.Client.Console
 
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
+        private static IInspectorService _inspectorService = null;
+        private static bool _isConnected = false;
 
         public static event EventHandler Exiting;
 
@@ -21,7 +23,6 @@ namespace RedSpect.Client.Console
 
             _commandGroups = new Dictionary<string, ICommandGroup>();
             _commands = new Dictionary<string, ICommand>();
-
         }
 
         public static void RegisterCommandGroup(ICommandGroup commandGroup)
@@ -34,17 +35,42 @@ namespace RedSpect.Client.Console
             }
         }
 
-        public static void Set(string name)
-        {
-
-        }
-
         public static void Execute(string commandName, object parameter)
         {
             if (!string.IsNullOrEmpty(commandName))
             {
-                _commands[commandName].Execute(parameter);
+                if (_commands.ContainsKey(commandName))
+                {
+                    _commands[commandName].Execute(parameter);
+                }
+                else if (IsConnected && InspectorService.ContainsCommand(commandName))
+                {
+                    InspectorService.Execute(commandName, parameter);
+                }
+                else
+                {
+                    System.Console.WriteLine("Command not found.");
+                }
             }
+        }
+
+        public static void Connect()
+        {
+            if (!IsConnected)
+            {
+                System.Console.WriteLine(string.Format("Connected -> {0}", InspectorService.HostDetails()));
+                _isConnected = true;
+            }
+            else
+            {
+                System.Console.WriteLine("Already connected.");
+            }
+        }
+
+        public static void Disconnect()
+        {
+            _isConnected = false;
+            System.Console.WriteLine("Disconnected.");
         }
 
         public static void Exit()
@@ -52,6 +78,27 @@ namespace RedSpect.Client.Console
             if (Exiting != null)
             {
                 Exiting(null, new EventArgs());
+            }
+        }
+
+        protected static IInspectorService InspectorService
+        {
+            get
+            {
+                if (_inspectorService == null)
+                {
+                    _inspectorService = Activator.GetObject(typeof(IInspectorService), "ipc://Diagnostics/InspectorService") as IInspectorService;
+                }
+
+                return _inspectorService;
+            }
+        }
+
+        public static bool IsConnected
+        { 
+            get
+            {
+                return _isConnected;
             }
         }
 

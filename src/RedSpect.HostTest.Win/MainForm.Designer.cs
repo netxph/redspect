@@ -31,6 +31,8 @@
             this._textConsole = new System.Windows.Forms.TextBox();
             this._buttonClose = new System.Windows.Forms.Button();
             this._buttonAddText = new System.Windows.Forms.Button();
+            this._textXValue = new System.Windows.Forms.TextBox();
+            this._buttonSetValue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _textConsole
@@ -46,14 +48,14 @@
             this._textConsole.Name = "_textConsole";
             this._textConsole.ReadOnly = true;
             this._textConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this._textConsole.Size = new System.Drawing.Size(508, 268);
+            this._textConsole.Size = new System.Drawing.Size(508, 263);
             this._textConsole.TabIndex = 0;
             // 
             // _buttonClose
             // 
             this._buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._buttonClose.Location = new System.Drawing.Point(445, 286);
+            this._buttonClose.Location = new System.Drawing.Point(445, 281);
             this._buttonClose.Name = "_buttonClose";
             this._buttonClose.Size = new System.Drawing.Size(75, 23);
             this._buttonClose.TabIndex = 1;
@@ -65,7 +67,7 @@
             // 
             this._buttonAddText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._buttonAddText.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._buttonAddText.Location = new System.Drawing.Point(12, 286);
+            this._buttonAddText.Location = new System.Drawing.Point(12, 281);
             this._buttonAddText.Name = "_buttonAddText";
             this._buttonAddText.Size = new System.Drawing.Size(75, 23);
             this._buttonAddText.TabIndex = 2;
@@ -73,12 +75,32 @@
             this._buttonAddText.UseVisualStyleBackColor = true;
             this._buttonAddText.Click += new System.EventHandler(this._buttonAddText_Click);
             // 
+            // _textXValue
+            // 
+            this._textXValue.Location = new System.Drawing.Point(93, 284);
+            this._textXValue.Name = "_textXValue";
+            this._textXValue.Size = new System.Drawing.Size(100, 20);
+            this._textXValue.TabIndex = 3;
+            // 
+            // _buttonSetValue
+            // 
+            this._buttonSetValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._buttonSetValue.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._buttonSetValue.Location = new System.Drawing.Point(199, 282);
+            this._buttonSetValue.Name = "_buttonSetValue";
+            this._buttonSetValue.Size = new System.Drawing.Size(89, 23);
+            this._buttonSetValue.TabIndex = 4;
+            this._buttonSetValue.Text = "&Set Value of X";
+            this._buttonSetValue.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonClose;
-            this.ClientSize = new System.Drawing.Size(532, 321);
+            this.ClientSize = new System.Drawing.Size(532, 316);
+            this.Controls.Add(this._buttonSetValue);
+            this.Controls.Add(this._textXValue);
             this.Controls.Add(this._buttonAddText);
             this.Controls.Add(this._buttonClose);
             this.Controls.Add(this._textConsole);
@@ -94,6 +116,8 @@
         private System.Windows.Forms.TextBox _textConsole;
         private System.Windows.Forms.Button _buttonClose;
         private System.Windows.Forms.Button _buttonAddText;
+        private System.Windows.Forms.TextBox _textXValue;
+        private System.Windows.Forms.Button _buttonSetValue;
     }
 }
 

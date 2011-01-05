@@ -8,8 +8,9 @@ namespace RedSpect.HostTest.Win
 {
     public class Injection
     {
-
         private static MainForm _mainForm = null;
+
+        public static int X { get; set; }
 
         public static MainForm MainForm
         {
