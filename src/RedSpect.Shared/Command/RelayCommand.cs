@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
+using RedSpect.Shared.Interfaces;
 
 namespace RedSpect.Shared.Command
 {
     public class RelayCommand : ICommand
     {
-        readonly Action<object> _execute;
+        readonly Func<object, ActionResult> _execute;
         readonly Predicate<object> _canExecute;
         
         public event EventHandler CanExecuteChanged;
         public delegate void ExecuteDelegate(object parameter);
 
-        public RelayCommand(Action<object> execute)
+        public RelayCommand(Func<object, ActionResult> execute)
             : this(execute, null)
         {
 
         }
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Func<object, ActionResult> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -34,9 +34,9 @@ namespace RedSpect.Shared.Command
             return _canExecute == null ? true : _canExecute(parameter);
         }
 
-        public void Execute(object parameter)
+        public ActionResult Execute(object parameter)
         {
-            _execute(parameter);
+            return _execute(parameter);
         }
     }
 }

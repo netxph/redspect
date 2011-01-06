@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Shared.Interfaces
 {
@@ -11,7 +11,7 @@ namespace RedSpect.Shared.Interfaces
 
         string HostDetails();
         void TestCommandSet(string name);
-        void Execute(string commandName, object parameter);
+        ActionResult Execute(string commandName, object parameter);
         bool ContainsCommand(string commandName);
     }
 }

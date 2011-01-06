@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared.Command;
 
@@ -19,32 +18,33 @@ namespace RedSpect.Client.Console.Commands
         }
 
         [Command("Exit")]
-        public void Exit(object args)
+        public ActionResult Exit(object args)
         {
             CommandManager.Exit();
+            return null;
         }
 
         [Command("Connect")]
-        public void Connect(object args)
+        public ActionResult Connect(object args)
         {
-            CommandManager.Connect();
+            return CommandManager.Connect();
         }
 
         [Command("Disconnect")]
-        public void Disconnect(object args)
+        public ActionResult Disconnect(object args)
         {
-            CommandManager.Disconnect();
+            return CommandManager.Disconnect();
         }
 
         [Command("About")]
-        public void About(object args)
+        public ActionResult About(object args)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("RedSpect 1.0 Copyright (c) Navitaire 2010");
-            builder.AppendLine("ALPHA version! Use at your own risk.");
-            builder.AppendLine();
+            ResultBuilder builder = new ResultBuilder();
 
-            System.Console.WriteLine(builder.ToString());
+            builder.WriteLine("RedSpect 1.0 Copyright (c) Navitaire 2010");
+            builder.WriteLine("ALPHA version! Use at your own risk.");
+
+            return builder.CreateResult(null);
         }
 
     }

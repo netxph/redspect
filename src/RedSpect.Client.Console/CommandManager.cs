@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
 using RedSpect.Shared.Interfaces;
-using System.Windows.Input;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Client.Console
 {
@@ -35,42 +35,51 @@ namespace RedSpect.Client.Console
             }
         }
 
-        public static void Execute(string commandName, object parameter)
+        public static ActionResult Execute(string commandName, object parameter)
         {
             if (!string.IsNullOrEmpty(commandName))
             {
                 if (_commands.ContainsKey(commandName))
                 {
-                    _commands[commandName].Execute(parameter);
+                    return _commands[commandName].Execute(parameter);
                 }
-                else if (IsConnected && InspectorService.ContainsCommand(commandName))
+                else if (IsConnected && InspectProvider.ContainsCommand(commandName))
                 {
-                    InspectorService.Execute(commandName, parameter);
+                    return InspectProvider.Execute(commandName, parameter);
                 }
                 else
                 {
-                    System.Console.WriteLine("Command not found.");
+                    return new ErrorResult("Command not found.");
                 }
             }
+
+            return null;
         }
 
-        public static void Connect()
+        public static ActionResult Connect()
         {
+            ResultBuilder builder = new ResultBuilder();
+
             if (!IsConnected)
             {
-                System.Console.WriteLine(string.Format("Connected -> {0}", InspectorService.HostDetails()));
+                builder.WriteLine(string.Format("Connected -> {0}", InspectProvider.HostDetails()));
                 _isConnected = true;
             }
             else
             {
-                System.Console.WriteLine("Already connected.");
+                builder.WriteLine("Already connected.");
             }
+
+            return builder.CreateResult(null);
         }
 
-        public static void Disconnect()
+        public static ActionResult Disconnect()
         {
+            ResultBuilder builder = new ResultBuilder();
             _isConnected = false;
-            System.Console.WriteLine("Disconnected.");
+            builder.WriteLine("Disconnected.");
+
+            return builder.CreateResult(null);
         }
 
         public static void Exit()
@@ -81,7 +90,7 @@ namespace RedSpect.Client.Console
             }
         }
 
-        protected static IInspectProvider InspectorService
+        protected static IInspectProvider InspectProvider
         {
             get
             {

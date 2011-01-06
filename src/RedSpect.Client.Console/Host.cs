@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Client.Console
 {
@@ -16,7 +17,6 @@ namespace RedSpect.Client.Console
             Arguments command = null;
             CommandManager.Exiting += new EventHandler(CommandManager_Exiting);
             CommandManager.RegisterCommandGroup(new CoreCommands());
-            CommandManager.RegisterCommandGroup(new TestCommands());
 
             while(!_exiting)
             {
@@ -25,7 +25,21 @@ namespace RedSpect.Client.Console
                     System.Console.Write(CommandManager.Prompt);
                     command = new Arguments(System.Console.ReadLine());
 
-                    CommandManager.Execute(command.CommandName, command.Parameters);
+                    ActionResult result = CommandManager.Execute(command.CommandName, command.Parameters);
+
+                    if (result != null)
+                    {
+                        if (result.Output != null)
+                        {
+                            foreach (var outputLine in result.Output)
+                            {
+                                System.Console.WriteLine(outputLine);
+                            }
+                        }
+
+                        System.Console.WriteLine(string.Format("=> {0}", result.Value ?? string.Empty));
+                    }
+
                 }
                 catch (Exception ex)
                 {

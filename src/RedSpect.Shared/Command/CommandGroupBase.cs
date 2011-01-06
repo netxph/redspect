@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
 using System.Reflection;
 using RedSpect.Shared.Interfaces;
 
@@ -43,7 +42,7 @@ namespace RedSpect.Shared.Command
                 {
                     foreach (var attribute in attributes)
                     {
-                        commands.Add(((CommandAttribute)attribute).Name.ToLower(), new RelayCommand((Action<object>)Delegate.CreateDelegate(typeof(Action<object>), this, method)));
+                        commands.Add(((CommandAttribute)attribute).Name.ToLower(), new RelayCommand((Func<object, ActionResult>)Delegate.CreateDelegate(typeof(Func<object, ActionResult>), this, method)));
                     }
                 }
             }

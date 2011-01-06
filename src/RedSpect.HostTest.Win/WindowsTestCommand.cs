@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared;
-using System.Windows.Input;
 using RedSpect.Shared.Command;
 
 namespace RedSpect.HostTest.Win
@@ -22,9 +21,21 @@ namespace RedSpect.HostTest.Win
         }
 
         [Command("WriteValueOfX")]
-        public void WriteValueOfX(object args)
+        public ActionResult WriteValueOfX(object args)
         {
+            ResultBuilder builder = new ResultBuilder();
+
             Injection.WriteForm(string.Format("The value of X is {0}", Injection.X));
+            builder.WriteLine("Sent to target client.");
+
+            return builder.CreateResult(null);
+        }
+
+        [Command("GetValueOfX")]
+        public ActionResult GetValueOfX(object args)
+        {
+            ResultBuilder builder = new ResultBuilder();
+            return builder.CreateResult(Injection.X);
         }
 
     }

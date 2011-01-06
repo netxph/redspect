@@ -5,7 +5,7 @@ using System.Text;
 using RedSpect.Shared.Interfaces;
 using System.Reflection;
 using System.IO;
-using System.Windows.Input;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Shared
 {
@@ -51,15 +51,17 @@ namespace RedSpect.Shared
             return commands;
         }
 
-        public void Execute(string commandName, object parameter)
+        public ActionResult Execute(string commandName, object parameter)
         {
             if (!string.IsNullOrEmpty(commandName))
             {
                 if (Commands.ContainsKey(commandName))
                 {
-                    Commands[commandName].Execute(parameter);
+                    return Commands[commandName].Execute(parameter);
                 }
             }
+
+            return null;
         }
 
         public bool ContainsCommand(string commandName)

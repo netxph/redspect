@@ -34,7 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,7 +46,6 @@
     <Compile Include="Arguments.cs" />
     <Compile Include="CommandManager.cs" />
     <Compile Include="Commands\CoreCommands.cs" />
-    <Compile Include="Commands\TestCommands.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
