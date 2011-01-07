@@ -5,6 +5,7 @@ using System.Text;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared;
 using RedSpect.Shared.Command;
+using System.Windows.Forms;
 
 namespace RedSpect.HostTest.Win
 {
@@ -36,6 +37,14 @@ namespace RedSpect.HostTest.Win
         {
             ResultBuilder builder = new ResultBuilder();
             return builder.CreateResult(Injection.X);
+        }
+
+        [Command("Destroy")]
+        public ActionResult Destroy(object args)
+        {
+            Application.Exit();
+
+            return null;
         }
 
     }
