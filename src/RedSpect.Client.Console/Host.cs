@@ -25,7 +25,7 @@ namespace RedSpect.Client.Console
                     System.Console.Write(CommandManager.Prompt);
                     command = new Arguments(System.Console.ReadLine());
 
-                    ActionResult result = CommandManager.Execute(command.CommandName, command.Parameters);
+                    ActionResult result = CommandManager.Execute(command);
 
                     if (result != null)
                     {

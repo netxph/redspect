@@ -13,5 +13,6 @@ namespace RedSpect.Shared.Interfaces
         void TestCommandSet(string name);
         ActionResult Execute(string commandName, object parameter);
         bool ContainsCommand(string commandName);
+        ActionResult ExecuteScript(string command);
     }
 }

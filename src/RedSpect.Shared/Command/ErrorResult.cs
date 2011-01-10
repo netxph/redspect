@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RedSpect.Shared.Command
 {
+    [Serializable]
     public class ErrorResult : ActionResult
     {
 

@@ -36,6 +36,21 @@ namespace RedSpect.Client.Console.Commands
             return CommandManager.Disconnect();
         }
 
+        [Command("Switch")]
+        public ActionResult Switch(object args)
+        {
+            var arguments = (string[])args;
+
+            if (string.IsNullOrWhiteSpace(arguments[0]))
+            {
+                return new ErrorResult("Switch parameter is required. (cs or rb)");
+            }
+
+            CommandManager.State = (CommandState)Enum.Parse(typeof(CommandState), arguments[0], true);
+
+            return null;
+        }
+
         [Command("About")]
         public ActionResult About(object args)
         {

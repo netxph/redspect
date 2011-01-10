@@ -8,15 +8,23 @@ using RedSpect.Shared.Command;
 
 namespace RedSpect.Client.Console
 {
+    public enum CommandState
+    { 
+        CS,
+        RB
+    }
+
     public class CommandManager
     {
 
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
-        private static IInspectProvider _inspectorService = null;
+        private static IInspectProvider _inspectorProvider = null;
         private static bool _isConnected = false;
 
         public static event EventHandler Exiting;
+
+        public static CommandState State { get; set; }
 
         static CommandManager()
         {
@@ -35,9 +43,37 @@ namespace RedSpect.Client.Console
             }
         }
 
+        public static ActionResult Execute(Arguments arguments)
+        {
+            if (arguments.Command.StartsWith("!"))
+            {
+                arguments = new Arguments(arguments.Command.Remove(0, 1));
+                return Execute(arguments.CommandName, arguments.Parameters);
+            }
+
+            if (State == CommandState.CS)
+            {
+                return Execute(arguments.CommandName, arguments.Parameters);
+            }
+            else
+            {
+                return Execute(arguments.Command);
+            }
+        }
+
+        public static ActionResult Execute(string command)
+        {
+            if (!IsConnected)
+            {
+                return new ErrorResult("Application is not yet connected to host.");
+            }
+
+            return InspectProvider.ExecuteScript(command);
+        }
+
         public static ActionResult Execute(string commandName, object parameter)
         {
-            if (!string.IsNullOrEmpty(commandName))
+            if (!string.IsNullOrWhiteSpace(commandName))
             {
                 if (_commands.ContainsKey(commandName))
                 {
@@ -94,12 +130,12 @@ namespace RedSpect.Client.Console
         {
             get
             {
-                if (_inspectorService == null)
+                if (_inspectorProvider == null)
                 {
-                    _inspectorService = Activator.GetObject(typeof(IInspectProvider), "ipc://Diagnostics/InspectorService") as IInspectProvider;
+                    _inspectorProvider = Activator.GetObject(typeof(IInspectProvider), "ipc://Diagnostics/InspectorService") as IInspectProvider;
                 }
 
-                return _inspectorService;
+                return _inspectorProvider;
             }
         }
 
@@ -115,7 +151,7 @@ namespace RedSpect.Client.Console
         {
             get
             {
-                return string.Format("[{0}] > ", DateTime.Now.ToString("HH:mm:ss"));
+                return string.Format("[{0}] > ", State.ToString());
             }
         }
     }

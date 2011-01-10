@@ -6,6 +6,7 @@ using RedSpect.Shared.Interfaces;
 using System.Reflection;
 using System.IO;
 using RedSpect.Shared.Command;
+using IronRuby;
 
 namespace RedSpect.Shared
 {
@@ -62,6 +63,39 @@ namespace RedSpect.Shared
             }
 
             return null;
+        }
+
+        public ActionResult ExecuteScript(string command)
+        {
+            var engine = Ruby.CreateEngine();
+
+            MemoryStream stream = new MemoryStream();
+            engine.Runtime.IO.SetOutput(stream, new UTF8Encoding());
+
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (!assembly.IsDynamic)
+                {
+                    engine.Runtime.LoadAssembly(assembly);
+                }
+            }
+
+            var results = engine.Execute(command);
+
+            stream.Position = 0;
+            StreamReader reader = new StreamReader(stream);
+
+            ResultBuilder builder = new ResultBuilder();
+
+            while (!reader.EndOfStream)
+            {
+                builder.WriteLine(reader.ReadLine());
+            }
+
+            reader.Close();
+            stream.Close();
+
+            return builder.CreateResult(results);
         }
 
         public bool ContainsCommand(string commandName)

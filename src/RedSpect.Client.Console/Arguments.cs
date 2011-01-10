@@ -10,11 +10,17 @@ namespace RedSpect.Client.Console
 
         public Arguments(string arguments)
         {
-            List<string> commandSplit = new List<string>(Parse(arguments));
-            CommandName = commandSplit[0].ToLower();
-            commandSplit.RemoveAt(0);
-            Parameters = commandSplit.ToArray();
+            if (!string.IsNullOrWhiteSpace(arguments))
+            {
+                List<string> commandSplit = new List<string>(Parse(arguments));
+                CommandName = commandSplit[0].ToLower();
+                commandSplit.RemoveAt(0);
+                Parameters = commandSplit.ToArray();
+                Command = arguments;
+            }
         }
+
+        public string Command { get; private set; }
 
         public string[] Parameters { get; set; }
         public string CommandName { get; private set; }
