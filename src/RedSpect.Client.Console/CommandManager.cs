@@ -17,6 +17,8 @@ namespace RedSpect.Client.Console
     public class CommandManager
     {
 
+        const string BLOCK_COMMAND = ">>";
+
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
         private static IInspectProvider _inspectorProvider = null;
@@ -68,7 +70,37 @@ namespace RedSpect.Client.Console
                 return new ErrorResult("Application is not yet connected to host.");
             }
 
+            if (command == BLOCK_COMMAND)
+            {
+                command = buildCommand();
+            }
+
             return InspectProvider.ExecuteScript(command);
+        }
+
+        private static string buildCommand()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            bool exit = false;
+            int count = 1;
+
+            while (!exit)
+            {
+                System.Console.Write(string.Format(">> {0} ", count));
+                string lineCommand = System.Console.ReadLine();
+                if (lineCommand != BLOCK_COMMAND)
+                {
+                    builder.AppendLine(lineCommand);
+                    count++;
+                }
+                else
+                {
+                    exit = true;
+                }
+            }
+
+            return builder.ToString();
         }
 
         public static ActionResult Execute(string commandName, object parameter)
