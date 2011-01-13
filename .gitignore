@@ -1,8 +1,10 @@
 *.gpState
+*.cache
 *.swp
 *.suo
 
 bin
+lib/*.dll
 **/**/bin
 **/**/obj
 

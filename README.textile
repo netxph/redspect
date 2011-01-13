@@ -14,6 +14,13 @@ h2. Requirements
 * Visual Studio 2010
 * Host must be compiled in .NET 4.0
 
+h2. How to build
+
+# Get the latest codes
+# if you have rake, run @rake rebuild@
+# if you don't have rake, copy the contents of lib/4.5 to lib/
+# rebuild the solution
+
 h2. How to use
 
 # Add RedSpect.Shared.dll to your application (ruby scripting requires, Microsoft.Scripting.dll, IronRuby.dll and IronRuby.Libraries.dll)

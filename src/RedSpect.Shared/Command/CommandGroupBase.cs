@@ -42,7 +42,7 @@ namespace RedSpect.Shared.Command
                 {
                     foreach (var attribute in attributes)
                     {
-                        commands.Add(((CommandAttribute)attribute).Name.ToLower(), new RelayCommand((Func<object, ActionResult>)Delegate.CreateDelegate(typeof(Func<object, ActionResult>), this, method)));
+                        commands.Add(((CommandAttribute)attribute).Name.ToLower(), new RelayCommand((Func<object, ActionResult>)Delegate.CreateDelegate(typeof(Func<object, ActionResult>), this, method), canExecute => true));
                     }
                 }
             }

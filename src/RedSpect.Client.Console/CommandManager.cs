@@ -105,7 +105,7 @@ namespace RedSpect.Client.Console
 
         public static ActionResult Execute(string commandName, object parameter)
         {
-            if (!string.IsNullOrWhiteSpace(commandName))
+            if (!string.IsNullOrEmpty(commandName))
             {
                 if (_commands.ContainsKey(commandName))
                 {

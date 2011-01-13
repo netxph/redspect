@@ -41,7 +41,7 @@ namespace RedSpect.Client.Console.Commands
         {
             var arguments = (string[])args;
 
-            if (string.IsNullOrWhiteSpace(arguments[0]))
+            if (string.IsNullOrEmpty(arguments[0]))
             {
                 return new ErrorResult("Switch parameter is required. (cs or rb)");
             }

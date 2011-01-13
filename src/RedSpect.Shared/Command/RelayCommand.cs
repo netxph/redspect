@@ -10,8 +10,13 @@ namespace RedSpect.Shared.Command
     {
         readonly Func<object, ActionResult> _execute;
         readonly Predicate<object> _canExecute;
-        
-        public event EventHandler CanExecuteChanged;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add {  }
+            remove {  }
+        }
+
         public delegate void ExecuteDelegate(object parameter);
 
         public RelayCommand(Func<object, ActionResult> execute)
@@ -26,7 +31,11 @@ namespace RedSpect.Shared.Command
                 throw new ArgumentNullException("execute");
 
             _execute = execute;
-            _canExecute = canExecute;     
+            _canExecute = canExecute;
+        }
+
+        public virtual void OnCanExecuteChanged(object sender, EventArgs e)
+        {
         }
         
         public bool CanExecute(object parameter)
@@ -38,5 +47,6 @@ namespace RedSpect.Shared.Command
         {
             return _execute(parameter);
         }
+
     }
 }

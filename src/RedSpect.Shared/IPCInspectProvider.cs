@@ -74,7 +74,7 @@ namespace RedSpect.Shared
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (!assembly.IsDynamic)
+                if (!(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder))
                 {
                     engine.Runtime.LoadAssembly(assembly);
                 }

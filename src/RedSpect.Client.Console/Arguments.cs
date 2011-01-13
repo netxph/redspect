@@ -10,7 +10,7 @@ namespace RedSpect.Client.Console
 
         public Arguments(string arguments)
         {
-            if (!string.IsNullOrWhiteSpace(arguments))
+            if (!string.IsNullOrEmpty(arguments))
             {
                 List<string> commandSplit = new List<string>(Parse(arguments));
                 CommandName = commandSplit[0].ToLower();
