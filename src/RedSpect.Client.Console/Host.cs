@@ -37,7 +37,12 @@ namespace RedSpect.Client.Console
                             }
                         }
 
-                        System.Console.WriteLine(string.Format("=> {0}", result.Value ?? string.Empty));
+                        if (result.Value != null)
+                        {
+                            System.Console.WriteLine(string.Format("=> {0}", result.Value));
+                        }
+                        
+                        System.Console.WriteLine();
                     }
 
                 }

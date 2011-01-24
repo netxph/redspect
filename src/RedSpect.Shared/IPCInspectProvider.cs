@@ -102,5 +102,18 @@ namespace RedSpect.Shared
         {
             return Commands.ContainsKey(commandName);
         }
+
+
+        public CommandDetail[] GetCommands()
+        {
+            List<CommandDetail> results = new List<CommandDetail>();
+            foreach (var key in Commands.Keys)
+            {
+                results.Add((Commands[key] as CommandDetail).GetDetails());
+            }
+
+            return results.ToArray();
+        }
+        
     }
 }

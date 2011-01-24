@@ -51,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
     <Compile Include="Command\ActionResult.cs" />
     <Compile Include="Command\Arguments.cs" />
     <Compile Include="Command\CommandAttribute.cs" />
+    <Compile Include="Command\CommandDetail.cs" />
     <Compile Include="Command\CommandGroupBase.cs" />
     <Compile Include="Command\ErrorResult.cs" />
     <Compile Include="Command\ResultBuilder.cs" />

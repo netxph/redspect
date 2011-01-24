@@ -21,7 +21,7 @@ namespace RedSpect.HostTest.Win
             Injection.WriteForm("Message from outer application.");
         }
 
-        [Command("WriteValueOfX")]
+        [Command("WriteValueOfX", "Writes the value of x", "WriteValueOfX")]
         public ActionResult WriteValueOfX(object args)
         {
             ResultBuilder builder = new ResultBuilder();
@@ -32,14 +32,14 @@ namespace RedSpect.HostTest.Win
             return builder.CreateResult(null);
         }
 
-        [Command("GetValueOfX")]
+        [Command("GetValueOfX", "Gets the value of x", "GetValueOfX")]
         public ActionResult GetValueOfX(object args)
         {
             ResultBuilder builder = new ResultBuilder();
             return builder.CreateResult(Injection.X);
         }
 
-        [Command("Destroy")]
+        [Command("Destroy", "Destroys the application", "Destroy")]
         public ActionResult Destroy(object args)
         {
             Application.Exit();

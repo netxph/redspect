@@ -28,9 +28,19 @@ namespace RedSpect.Shared.Command
             ConsoleOutput.Add(output);
         }
 
+        public void WriteLine()
+        {
+            WriteLine(string.Empty);
+        }
+
         public ActionResult CreateResult(object value)
         {
             return new ActionResult(ConsoleOutput, value);
+        }
+
+        public ActionResult CreateResult()
+        {
+            return CreateResult(null);
         }
 
     }

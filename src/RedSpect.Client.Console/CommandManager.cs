@@ -9,7 +9,7 @@ using RedSpect.Shared.Command;
 namespace RedSpect.Client.Console
 {
     public enum CommandState
-    { 
+    {
         CS,
         RB
     }
@@ -172,19 +172,97 @@ namespace RedSpect.Client.Console
         }
 
         public static bool IsConnected
-        { 
+        {
             get
             {
                 return _isConnected;
             }
         }
 
-        public static string Prompt 
+        public static string Prompt
         {
             get
             {
                 return string.Format("[{0}] > ", State.ToString());
             }
+        }
+
+        public static ActionResult GetCommand(string commandName)
+        {
+            
+
+            if (_commands.ContainsKey(commandName))
+            {
+                ResultBuilder builder = new ResultBuilder();    
+
+                var detail = _commands[commandName] as CommandDetail;
+
+                if (detail != null)
+                {
+                    displayCommand(builder, detail);
+                }
+
+                return builder.CreateResult();
+            }
+            else if (IsConnected && InspectProvider.ContainsCommand(commandName))
+            {
+                ResultBuilder builder = new ResultBuilder();    
+
+                var commands = InspectProvider.GetCommands();
+
+                var detail = commands.FirstOrDefault(command => command.Name.ToLower() == commandName);
+
+                if (detail != null)
+                {
+                    displayCommand(builder, detail);
+                }
+
+                return builder.CreateResult();
+            }
+            else
+            {
+                return new ErrorResult("Command not found.");
+            }
+        }
+
+        private static void displayCommand(ResultBuilder builder, CommandDetail detail)
+        {
+            builder.WriteLine();
+            builder.WriteLine(string.Format("COMMAND: {0}", detail.Name));
+            builder.WriteLine(string.Format("   {0}", detail.Help));
+            builder.WriteLine();
+            builder.WriteLine(string.Format("USAGE: {0}", detail.Usage));
+        }
+
+        public static ActionResult GetCommand()
+        {
+            ResultBuilder builder = new ResultBuilder();
+
+            builder.WriteLine("Local Commands");
+            builder.WriteLine("====================");
+            foreach (string key in _commands.Keys)
+            {
+                var detail = _commands[key] as CommandDetail;
+
+                if (detail != null)
+                {
+                    builder.WriteLine(string.Format("{0}# {1}", detail.Name.PadRight(20), detail.Help));
+                }
+            }
+
+            if (IsConnected)
+            {
+                builder.WriteLine();
+                builder.WriteLine("Remote Commands");
+                builder.WriteLine("====================");
+                var commands = InspectProvider.GetCommands();
+                foreach (var command in commands)
+                {
+                    builder.WriteLine(string.Format("{0}# {1}", command.Name.PadRight(20), command.Help));
+                }
+            }
+
+            return builder.CreateResult();
         }
     }
 }

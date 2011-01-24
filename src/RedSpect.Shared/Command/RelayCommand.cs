@@ -6,7 +6,7 @@ using RedSpect.Shared.Interfaces;
 
 namespace RedSpect.Shared.Command
 {
-    public class RelayCommand : ICommand
+    public class RelayCommand : CommandDetail, ICommand
     {
         readonly Func<object, ActionResult> _execute;
         readonly Predicate<object> _canExecute;
@@ -48,5 +48,7 @@ namespace RedSpect.Shared.Command
             return _execute(parameter);
         }
 
+        
+        
     }
 }

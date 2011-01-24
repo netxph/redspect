@@ -10,11 +10,29 @@ namespace RedSpect.Shared.Command
     {
 
         public CommandAttribute(string name)
+            : this(name, string.Empty, string.Empty)
+        {
+            
+        }
+
+        public CommandAttribute(string name, string help)
+            : this(name, help, string.Empty)
+        {
+
+        }
+
+        public CommandAttribute(string name, string help, string usage)
         {
             Name = name;
+            Help = help;
+            Usage = usage;
         }
 
         public string Name { get; set; }
+
+        public string Help { get; set; }
+
+        public string Usage { get; set; }
 
     }
 }
