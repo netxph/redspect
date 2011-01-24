@@ -30,3 +30,15 @@ task :rebuild35 do
   cp_r 'lib/3.5/'+"/.", './lib/'
   sh 'msbuild /t:clean;rebuild /p:TargetFrameworkVersion="v3.5"'
 end
+
+desc 'rebuild release'
+task :release do
+  cp_r 'lib/4.0/'+"/.", './lib/'
+  sh 'msbuild /t:clean;rebuild /p:Configuration="Release"'
+end
+
+desc 'rebuild release for 3.5'
+task :release35 do
+  cp_r 'lib/3.5/'+"/.", './lib/'
+  sh 'msbuild /t:clean;rebuild /p:Configuration="Release";TargetFrameworkVersion="v3.5"'
+end

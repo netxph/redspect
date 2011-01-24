@@ -11,8 +11,9 @@ namespace RedSpect.Client.Console
         {
 
             System.Console.WriteLine("RedSpect [1.0] .NET Application Inspector");
-            System.Console.WriteLine("ALPHA Version: Use at your own RISK!!!");
+            System.Console.WriteLine("Marc Vitalis (c) 2011");
             System.Console.WriteLine();
+            System.Console.WriteLine("Type EXIT to quit.");
 
             Host.Run();
         }
