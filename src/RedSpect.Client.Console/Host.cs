@@ -33,7 +33,7 @@ namespace RedSpect.Client.Console
                         {
                             foreach (var outputLine in result.Output)
                             {
-                                System.Console.WriteLine(outputLine);
+                                ConsoleStyle.WriteLine(outputLine);
                             }
                         }
 

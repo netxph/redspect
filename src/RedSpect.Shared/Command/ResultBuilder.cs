@@ -28,6 +28,11 @@ namespace RedSpect.Shared.Command
             ConsoleOutput.Add(output);
         }
 
+        public void WriteLine(string output, ConsoleColor color)
+        {
+            ConsoleOutput.Add(string.Format("[{0}]{1}", color.ToString(), output));
+        }
+
         public void WriteLine()
         {
             WriteLine(string.Empty);

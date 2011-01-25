@@ -238,7 +238,7 @@ namespace RedSpect.Client.Console
         {
             ResultBuilder builder = new ResultBuilder();
 
-            builder.WriteLine("Local Commands");
+            builder.WriteLine("Local Commands", ConsoleColor.DarkYellow);
             builder.WriteLine("====================");
             foreach (string key in _commands.Keys)
             {
@@ -253,7 +253,7 @@ namespace RedSpect.Client.Console
             if (IsConnected)
             {
                 builder.WriteLine();
-                builder.WriteLine("Remote Commands");
+                builder.WriteLine("Remote Commands", ConsoleColor.DarkYellow);
                 builder.WriteLine("====================");
                 var commands = InspectProvider.GetCommands();
                 foreach (var command in commands)

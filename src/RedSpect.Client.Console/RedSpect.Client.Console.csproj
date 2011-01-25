@@ -46,6 +46,7 @@
     <Compile Include="Arguments.cs" />
     <Compile Include="CommandManager.cs" />
     <Compile Include="Commands\CoreCommands.cs" />
+    <Compile Include="ConsoleStyleBlock.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
