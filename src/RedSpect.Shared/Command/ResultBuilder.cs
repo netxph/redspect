@@ -23,6 +23,8 @@ namespace RedSpect.Shared.Command
             }
         }
 
+        
+
         public void WriteLine(string output)
         {
             ConsoleOutput.Add(output);

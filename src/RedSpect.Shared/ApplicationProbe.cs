@@ -14,6 +14,15 @@ namespace RedSpect.Shared
     {
 
         private static Dictionary<string, IInspectorCommandGroup> _inspectorCommands = new Dictionary<string,IInspectorCommandGroup>();
+        private static IProbeProvider _probeProvider = null;
+
+        public static IProbeProvider ProbeProvider
+        { 
+            get 
+            {
+                return _probeProvider;
+            }
+        }
 
         public static Dictionary<string, IInspectorCommandGroup> InspectorCommands
         {
@@ -25,18 +34,19 @@ namespace RedSpect.Shared
             _inspectorCommands.Add(commandGroup.Name, commandGroup);
         }
 
-        public static void Start()
+        public static void Start<T>(IDictionary<string, string> properties) where T: IProbeProvider
         {
-            BinaryClientFormatterSinkProvider clientProvider = new BinaryClientFormatterSinkProvider();
-            BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
-
-            IDictionary properties = new Hashtable();
-            properties["portName"] = "Diagnostics";
-            properties["authorizedGroup"] = "Everyone";
-
-            ChannelServices.RegisterChannel(new IpcChannel(properties, clientProvider, serverProvider), false);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(IPCInspectProvider), "InspectorService", WellKnownObjectMode.Singleton);
+            _probeProvider = Activator.CreateInstance<T>();
+            _probeProvider.Start(properties);
         }
 
+        public static void Stop()
+        {
+            if (ProbeProvider != null && ProbeProvider.IsStarted)
+            {
+                ProbeProvider.Stop();
+            }
+        }
+        
     }
 }

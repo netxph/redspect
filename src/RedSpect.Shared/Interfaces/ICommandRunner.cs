@@ -6,7 +6,7 @@ using RedSpect.Shared.Command;
 
 namespace RedSpect.Shared.Interfaces
 {
-    public interface IInspectProvider
+    public interface ICommandRunner
     {
 
         string HostDetails();

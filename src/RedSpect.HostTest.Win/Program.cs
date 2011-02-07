@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using RedSpect.Shared;
+using RedSpect.Shared.Providers;
 
 namespace RedSpect.HostTest.Win
 {
@@ -17,7 +18,12 @@ namespace RedSpect.HostTest.Win
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationProbe.RegisterCommands(new WindowsTestCommand());
-            ApplicationProbe.Start();
+
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add("portName", "Diagnostics");
+            properties.Add("authorizedGroup", "Everyone");
+
+            ApplicationProbe.Start<IPCProbeProvider>(properties);
             Application.Run(Injection.MainForm);
         }
     }

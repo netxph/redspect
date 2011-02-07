@@ -10,7 +10,7 @@ using IronRuby;
 
 namespace RedSpect.Shared
 {
-    public class IPCInspectProvider : MarshalByRefObject, IInspectProvider
+    public class DefaultCommandRunner : MarshalByRefObject, ICommandRunner
     {
         private Dictionary<string, ICommand> _commands = null;
 

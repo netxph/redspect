@@ -70,10 +70,12 @@
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandGroup.cs" />
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="IPCInspectProvider.cs" />
+    <Compile Include="DefaultCommandRunner.cs" />
     <Compile Include="Interfaces\IInspectorCommandGroup.cs" />
-    <Compile Include="Interfaces\IInspectProvider.cs" />
+    <Compile Include="Interfaces\ICommandRunner.cs" />
+    <Compile Include="Interfaces\IProbeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\IPCProbeProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
