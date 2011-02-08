@@ -9,20 +9,28 @@ namespace RedSpect.Shared.Command
     public class ActionResult
     {
 
+        #region Constructors
+
         public ActionResult()
         {
 
         }
 
-        public ActionResult(List<string> output, object value)
+        public ActionResult(IEnumerable<TraceOutput> output, object value)
         {
             Output = output;
             Value = value;
         }
 
-        public List<string> Output { get; set; }
+        #endregion
+
+        #region Properties
+
+        public IEnumerable<TraceOutput> Output { get; set; }
 
         public object Value { get; set; }
+
+        #endregion
 
     }
 }

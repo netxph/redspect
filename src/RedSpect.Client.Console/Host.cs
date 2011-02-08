@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
 using RedSpect.Shared.Command;
+using System.Diagnostics;
 
 namespace RedSpect.Client.Console
 {
@@ -29,18 +30,7 @@ namespace RedSpect.Client.Console
 
                     if (result != null)
                     {
-                        if (result.Output != null)
-                        {
-                            foreach (var outputLine in result.Output)
-                            {
-                                ConsoleStyle.WriteLine(outputLine);
-                            }
-                        }
-
-                        if (result.Value != null)
-                        {
-                            System.Console.WriteLine(string.Format("=> {0}", result.Value));
-                        }
+                        TraceWriter.WriteAll(result, new ConsoleTraceListener());
                         
                         System.Console.WriteLine();
                     }

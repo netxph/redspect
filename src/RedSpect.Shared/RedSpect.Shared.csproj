@@ -67,6 +67,8 @@
     <Compile Include="Command\CommandGroupBase.cs" />
     <Compile Include="Command\ErrorResult.cs" />
     <Compile Include="Command\ResultBuilder.cs" />
+    <Compile Include="Command\TraceOutput.cs" />
+    <Compile Include="Command\TraceWriter.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandGroup.cs" />
     <Compile Include="Command\RelayCommand.cs" />

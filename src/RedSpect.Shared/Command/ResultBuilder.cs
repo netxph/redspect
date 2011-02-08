@@ -2,37 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace RedSpect.Shared.Command
 {
     public class ResultBuilder
     {
 
-        private List<string> _consoleOutput = null;
+        private List<TraceOutput> _traceOutput = null;
 
-        public List<string> ConsoleOutput 
+        public List<TraceOutput> TraceOutput
         {
             get
             {
-                if (_consoleOutput == null)
+                if (_traceOutput == null)
                 {
-                    _consoleOutput = new List<string>();
+                    _traceOutput = new List<TraceOutput>();
                 }
 
-                return _consoleOutput;
+                return _traceOutput;
             }
         }
 
-        
-
         public void WriteLine(string output)
         {
-            ConsoleOutput.Add(output);
+            WriteLine(output, TraceOutputType.Default);
         }
 
-        public void WriteLine(string output, ConsoleColor color)
+        public void WriteLine(string output, TraceOutputType outputType)
         {
-            ConsoleOutput.Add(string.Format("[{0}]{1}", color.ToString(), output));
+            TraceOutput.Add(new TraceOutput(output, outputType));
         }
 
         public void WriteLine()
@@ -42,7 +41,7 @@ namespace RedSpect.Shared.Command
 
         public ActionResult CreateResult(object value)
         {
-            return new ActionResult(ConsoleOutput, value);
+            return new ActionResult(TraceOutput, value);
         }
 
         public ActionResult CreateResult()

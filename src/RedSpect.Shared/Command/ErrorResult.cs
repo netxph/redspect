@@ -5,13 +5,11 @@ using System.Text;
 
 namespace RedSpect.Shared.Command
 {
-    [Serializable]
     public class ErrorResult : ActionResult
     {
-
         public ErrorResult(string message)
         {
-            Output = new List<string>() { message };
+            Output = new List<TraceOutput>() { new TraceOutput(message, TraceOutputType.Error) };
         }
 
     }
