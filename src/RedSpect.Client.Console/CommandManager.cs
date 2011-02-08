@@ -74,8 +74,14 @@ namespace RedSpect.Client.Console
             {
                 command = buildCommand();
             }
-
-            return InspectProvider.ExecuteScript(command);
+            try
+            {
+                return InspectProvider.ExecuteScript(command);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
         }
 
         private static string buildCommand()

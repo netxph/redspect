@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace RedSpect.Shared.Command
 {
+    [DataContract]
+    [Serializable]
     public class TraceOutput
     {
         #region Constructors
@@ -27,16 +30,27 @@ namespace RedSpect.Shared.Command
 
         #endregion
 
+        [DataMember]
         public string Message { get; set; }
+
+        [DataMember]
         public TraceOutputType MessageType { get; set; }
 
     }
 
+    [DataContract]
     public enum TraceOutputType
     { 
+        [DataMember]
         Default,
+
+        [DataMember]
         Information,
+
+        [DataMember]
         Warning,
+
+        [DataMember]
         Error
     }
 }
