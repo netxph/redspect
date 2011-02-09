@@ -26,12 +26,12 @@ namespace RedSpect.Shared.Command
 
         public void WriteLine(string output)
         {
-            WriteLine(output, TraceOutputType.Default);
+            WriteLine(output, TraceEventType.Verbose);
         }
 
-        public void WriteLine(string output, TraceOutputType outputType)
+        public void WriteLine(string output, TraceEventType traceEventType)
         {
-            TraceOutput.Add(new TraceOutput(output, outputType));
+            TraceOutput.Add(new TraceOutput(output, traceEventType));
         }
 
         public void WriteLine()

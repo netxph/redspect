@@ -66,6 +66,7 @@
     <Compile Include="Command\CommandDetail.cs" />
     <Compile Include="Command\CommandGroupBase.cs" />
     <Compile Include="Command\ErrorResult.cs" />
+    <Compile Include="Command\ExtendedConsoleTraceListener.cs" />
     <Compile Include="Command\ResultBuilder.cs" />
     <Compile Include="Command\TraceOutput.cs" />
     <Compile Include="Command\TraceWriter.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Interfaces\IProbeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IPCProbeProvider.cs" />
+    <Compile Include="Providers\TCPProbeProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

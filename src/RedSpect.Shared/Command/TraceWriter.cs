@@ -12,20 +12,17 @@ namespace RedSpect.Shared.Command
         public static void WriteAll(ActionResult output, TraceListener listener)
         {
             Trace.Listeners.Clear();
-            Trace.Listeners.Add(listener);
+            Trace.Listeners.Add(new ExtendedConsoleTraceListener());
 
             foreach (var lineOutput in output.Output)
             {
-                switch (lineOutput.MessageType)
+                switch (lineOutput.TraceEventType)
                 { 
-                    case TraceOutputType.Information:
-                        break;
-                        Trace.TraceInformation(lineOutput.Message);
-                    case TraceOutputType.Warning:
-                        Trace.TraceWarning(lineOutput.Message);
-                        break;
-                    case TraceOutputType.Error:
+                    case TraceEventType.Error:
                         Trace.TraceError(lineOutput.Message);
+                        break;
+                    case TraceEventType.Warning:
+                        Trace.TraceWarning(lineOutput.Message);
                         break;
                     default:
                         Trace.WriteLine(lineOutput.Message);
@@ -35,7 +32,7 @@ namespace RedSpect.Shared.Command
 
             if (output.Value != null)
             {
-                Trace.TraceInformation("=> {0}", output.ToString());
+                Trace.TraceInformation(string.Format("=> {0}", output.Value.ToString()));
             }
         }
 

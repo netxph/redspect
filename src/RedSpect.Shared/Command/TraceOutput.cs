@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using System.Diagnostics;
 
 namespace RedSpect.Shared.Command
 {
@@ -17,40 +18,29 @@ namespace RedSpect.Shared.Command
         }
 
         public TraceOutput(string message)
-            : this(message, TraceOutputType.Default)
+            : this(message, TraceEventType.Verbose)
         {
 
         }
 
-        public TraceOutput(string message, TraceOutputType messageType)
+        public TraceOutput(string message, TraceEventType traceEventType)
         {
             Message = message;
-            MessageType = messageType;
+            TraceEventType = traceEventType;
         }
 
         #endregion
+
+        #region Properties
 
         [DataMember]
         public string Message { get; set; }
 
         [DataMember]
-        public TraceOutputType MessageType { get; set; }
+        public TraceEventType TraceEventType { get; set; }
+
+        #endregion
 
     }
 
-    [DataContract]
-    public enum TraceOutputType
-    { 
-        [DataMember]
-        Default,
-
-        [DataMember]
-        Information,
-
-        [DataMember]
-        Warning,
-
-        [DataMember]
-        Error
-    }
 }

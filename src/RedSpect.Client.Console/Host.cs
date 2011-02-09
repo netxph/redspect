@@ -15,7 +15,7 @@ namespace RedSpect.Client.Console
 
         public static void Run()
         {
-            Arguments command = null;
+            string command = null;
             CommandManager.Exiting += new EventHandler(CommandManager_Exiting);
             CommandManager.RegisterCommandGroup(new CoreCommands());
 
@@ -24,15 +24,18 @@ namespace RedSpect.Client.Console
                 try
                 {
                     System.Console.Write(CommandManager.Prompt);
-                    command = new Arguments(System.Console.ReadLine());
+                    command = System.Console.ReadLine();
 
-                    ActionResult result = CommandManager.Execute(command);
-
-                    if (result != null)
+                    if (!string.IsNullOrWhiteSpace(command))
                     {
-                        TraceWriter.WriteAll(result, new ConsoleTraceListener());
-                        
-                        System.Console.WriteLine();
+                        ActionResult result = CommandManager.Execute(new Arguments(command));
+
+                        if (result != null)
+                        {
+                            TraceWriter.WriteAll(result, new ConsoleTraceListener());
+
+                            System.Console.WriteLine();
+                        }
                     }
 
                 }

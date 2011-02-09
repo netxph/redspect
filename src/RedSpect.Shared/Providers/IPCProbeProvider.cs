@@ -27,6 +27,21 @@ namespace RedSpect.Shared.Providers
 
         public void Start(IDictionary<string, string> properties)
         {
+
+            var tcpChannel = ChannelServices.RegisteredChannels.FirstOrDefault(channel => channel is IpcChannel);
+
+            if (tcpChannel == null)
+            {
+                createIpcChannel(properties);
+            }
+            
+            RemotingConfiguration.RegisterWellKnownServiceType(typeof(DefaultCommandRunner), "InspectorService", WellKnownObjectMode.Singleton);
+            
+            _isStarted = true;
+        }
+
+        private void createIpcChannel(IDictionary<string, string> properties)
+        {
             BinaryClientFormatterSinkProvider clientProvider = new BinaryClientFormatterSinkProvider();
             BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
 
@@ -35,9 +50,6 @@ namespace RedSpect.Shared.Providers
             ipcProperties["authorizedGroup"] = properties["authorizedGroup"];
 
             ChannelServices.RegisterChannel(new IpcChannel(ipcProperties, clientProvider, serverProvider), false);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(DefaultCommandRunner), "InspectorService", WellKnownObjectMode.Singleton);
-            
-            _isStarted = true;
         }
 
         public void Stop()

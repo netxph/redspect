@@ -170,7 +170,8 @@ namespace RedSpect.Client.Console
             {
                 if (_inspectorProvider == null)
                 {
-                    _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
+                    //_inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
+                    _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
                 }
 
                 return _inspectorProvider;

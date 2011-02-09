@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace RedSpect.Shared.Command
 {
@@ -9,7 +10,7 @@ namespace RedSpect.Shared.Command
     {
         public ErrorResult(string message)
         {
-            Output = new List<TraceOutput>() { new TraceOutput(message, TraceOutputType.Error) };
+            Output = new List<TraceOutput>() { new TraceOutput(message, TraceEventType.Error) };
         }
 
     }
