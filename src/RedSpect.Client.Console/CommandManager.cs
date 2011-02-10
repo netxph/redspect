@@ -23,6 +23,7 @@ namespace RedSpect.Client.Console
         private static Dictionary<string, ICommand> _commands = null;
         private static ICommandRunner _inspectorProvider = null;
         private static bool _isConnected = false;
+		private static string _connectionType = string.Empty;
 
         public static event EventHandler Exiting;
 
@@ -130,9 +131,10 @@ namespace RedSpect.Client.Console
             return null;
         }
 
-        public static ActionResult Connect()
+        public static ActionResult Connect(string connectionType)
         {
             ResultBuilder builder = new ResultBuilder();
+			_connectionType = connectionType;
 
             if (!IsConnected)
             {
@@ -170,8 +172,10 @@ namespace RedSpect.Client.Console
             {
                 if (_inspectorProvider == null)
                 {
-                    //_inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
-                    _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
+					if(_connectionType.ToLower() == "ipc")
+	                    _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
+					else if (_connectionType.ToLower() == "tcp")
+						_inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
                 }
 
                 return _inspectorProvider;

@@ -24,10 +24,18 @@ namespace RedSpect.Client.Console.Commands
             return null;
         }
 
-        [Command("Connect", "Attach to host", "Connect")]
+        [Command("Connect", "Attach to host", "Connect [ipc|tcp]")]
         public ActionResult Connect(object args)
         {
-            return CommandManager.Connect();
+			var arguments = (string[])args;
+			string connectionType = string.Empty;
+
+			if (arguments.Length == 0)
+				connectionType = "ipc";
+			else
+				connectionType = arguments[0];
+
+            return CommandManager.Connect(connectionType);
         }
 
         [Command("Disconnect", "Detach from host", "Disconnect")]
