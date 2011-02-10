@@ -27,13 +27,11 @@ namespace RedSpect.Client.Console.Commands
         [Command("Connect", "Attach to host", "Connect [ipc|tcp]")]
         public ActionResult Connect(object args)
         {
-			var arguments = (string[])args;
-			string connectionType = string.Empty;
+            var arguments = (string[])args;
+            string connectionType = "ipc";
 
-			if (arguments.Length == 0)
-				connectionType = "ipc";
-			else
-				connectionType = arguments[0];
+            if (arguments.Length > 0 && !string.IsNullOrEmpty(arguments[0]))
+                connectionType = arguments[0].ToLower();
 
             return CommandManager.Connect(connectionType);
         }

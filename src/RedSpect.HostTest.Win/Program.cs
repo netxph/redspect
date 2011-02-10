@@ -23,7 +23,7 @@ namespace RedSpect.HostTest.Win
             properties.Add("portName", "Diagnostics");
             properties.Add("authorizedGroup", "Everyone");
 
-            ApplicationProbe.Start<IPCProbeProvider>(properties);
+            ApplicationProbe.Start<TCPProbeProvider>(properties);
             Application.Run(Injection.MainForm);
         }
     }

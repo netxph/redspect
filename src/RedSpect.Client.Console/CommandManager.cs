@@ -23,7 +23,6 @@ namespace RedSpect.Client.Console
         private static Dictionary<string, ICommand> _commands = null;
         private static ICommandRunner _inspectorProvider = null;
         private static bool _isConnected = false;
-		private static string _connectionType = string.Empty;
 
         public static event EventHandler Exiting;
 
@@ -134,12 +133,20 @@ namespace RedSpect.Client.Console
         public static ActionResult Connect(string connectionType)
         {
             ResultBuilder builder = new ResultBuilder();
-			_connectionType = connectionType;
 
             if (!IsConnected)
             {
-                builder.WriteLine(string.Format("Connected -> {0}", InspectProvider.HostDetails()));
-                _isConnected = true;
+                initializeConnection(connectionType);
+
+                if (InspectProvider != null)
+                {
+                    builder.WriteLine(string.Format("Connected -> {0}", InspectProvider.HostDetails()));
+                    _isConnected = true;
+                }
+                else
+                {
+                    return new ErrorResult("Error connecting to host.");
+                }
             }
             else
             {
@@ -170,14 +177,6 @@ namespace RedSpect.Client.Console
         {
             get
             {
-                if (_inspectorProvider == null)
-                {
-					if(_connectionType.ToLower() == "ipc")
-	                    _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
-					else if (_connectionType.ToLower() == "tcp")
-						_inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
-                }
-
                 return _inspectorProvider;
             }
         }
@@ -200,11 +199,11 @@ namespace RedSpect.Client.Console
 
         public static ActionResult GetCommand(string commandName)
         {
-            
+
 
             if (_commands.ContainsKey(commandName))
             {
-                ResultBuilder builder = new ResultBuilder();    
+                ResultBuilder builder = new ResultBuilder();
 
                 var detail = _commands[commandName] as CommandDetail;
 
@@ -217,7 +216,7 @@ namespace RedSpect.Client.Console
             }
             else if (IsConnected && InspectProvider.ContainsCommand(commandName))
             {
-                ResultBuilder builder = new ResultBuilder();    
+                ResultBuilder builder = new ResultBuilder();
 
                 var commands = InspectProvider.GetCommands();
 
@@ -234,6 +233,25 @@ namespace RedSpect.Client.Console
             {
                 return new ErrorResult("Command not found.");
             }
+        }
+
+        private static void initializeConnection(string connectionType)
+        {
+            _inspectorProvider = null;
+
+            try
+            {
+                switch (connectionType)
+                {
+                    case "ipc":
+                        _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
+                        break;
+                    case "tcp":
+                        _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
+                        break;
+                }
+            }
+            catch { } //silent catch
         }
 
         private static void displayCommand(ResultBuilder builder, CommandDetail detail)
