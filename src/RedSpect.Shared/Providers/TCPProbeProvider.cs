@@ -41,7 +41,13 @@ namespace RedSpect.Shared.Providers
 
         private void createTcpChannel(IDictionary<string, string> properties)
         {
-            TcpChannel tcpChannel = new TcpChannel(10999);
+            int port = 10999;
+            if (properties.ContainsKey("port"))
+            {
+                port = int.Parse(properties["port"]);
+            }
+
+            TcpChannel tcpChannel = new TcpChannel(port);
             ChannelServices.RegisterChannel(tcpChannel);
         }
 

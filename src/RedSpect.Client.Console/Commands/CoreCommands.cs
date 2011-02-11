@@ -11,6 +11,7 @@ namespace RedSpect.Client.Console.Commands
     {
 
         const string COMMAND_SET_NAME = "Core";
+        const string DEFAULT_CONNECTION = "IPC";
 
         public override string Name
         {
@@ -24,16 +25,23 @@ namespace RedSpect.Client.Console.Commands
             return null;
         }
 
-        [Command("Connect", "Attach to host", "Connect [ipc|tcp]")]
+        [Command("Connect", "Attach to host", "Connect [ipc|remoting|injection]")]
         public ActionResult Connect(object args)
         {
-            var arguments = (string[])args;
-            string connectionType = "ipc";
+            var arguments = new List<string>((string[])args);
 
-            if (arguments.Length > 0 && !string.IsNullOrEmpty(arguments[0]))
-                connectionType = arguments[0].ToLower();
+            //[1] - connection type
+            string connectionId = DEFAULT_CONNECTION;
 
-            return CommandManager.Connect(connectionType);
+            if (arguments.Count > 0)
+            {
+                connectionId = arguments[0];
+
+                //strip arguments
+                arguments.RemoveAt(0);
+            }
+
+            return CommandManager.Connect(connectionId, arguments.ToArray());
         }
 
         [Command("Disconnect", "Detach from host", "Disconnect")]

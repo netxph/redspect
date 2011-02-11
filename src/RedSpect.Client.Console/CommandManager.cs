@@ -21,11 +21,10 @@ namespace RedSpect.Client.Console
 
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
-        private static ICommandRunner _inspectorProvider = null;
         private static bool _isConnected = false;
+        private static ICommandRunner _inspectorProvider = null;
 
         public static event EventHandler Exiting;
-
         public static CommandState State { get; set; }
 
         static CommandManager()
@@ -33,6 +32,8 @@ namespace RedSpect.Client.Console
 
             _commandGroups = new Dictionary<string, ICommandGroup>();
             _commands = new Dictionary<string, ICommand>();
+
+
         }
 
         public static void RegisterCommandGroup(ICommandGroup commandGroup)
@@ -130,13 +131,13 @@ namespace RedSpect.Client.Console
             return null;
         }
 
-        public static ActionResult Connect(string connectionType)
+        public static ActionResult Connect(string connectionId, params string[] args)
         {
             ResultBuilder builder = new ResultBuilder();
 
             if (!IsConnected)
             {
-                initializeConnection(connectionType);
+                initializeConnection(connectionId, args);
 
                 if (InspectProvider != null)
                 {
@@ -154,6 +155,11 @@ namespace RedSpect.Client.Console
             }
 
             return builder.CreateResult(null);
+        }
+
+        private static void initializeConnection(string connectionId, string[] arguments)
+        {
+            _inspectorProvider = ProbeFactory.Create(connectionId.ToLower(), arguments);
         }
 
         public static ActionResult Disconnect()
@@ -235,24 +241,6 @@ namespace RedSpect.Client.Console
             }
         }
 
-        private static void initializeConnection(string connectionType)
-        {
-            _inspectorProvider = null;
-
-            try
-            {
-                switch (connectionType)
-                {
-                    case "ipc":
-                        _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "ipc://Diagnostics/InspectorService") as ICommandRunner;
-                        break;
-                    case "tcp":
-                        _inspectorProvider = Activator.GetObject(typeof(ICommandRunner), "tcp://localhost:10999/InspectorService") as ICommandRunner;
-                        break;
-                }
-            }
-            catch { } //silent catch
-        }
 
         private static void displayCommand(ResultBuilder builder, CommandDetail detail)
         {
