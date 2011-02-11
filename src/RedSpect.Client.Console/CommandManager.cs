@@ -5,6 +5,7 @@ using System.Text;
 using RedSpect.Client.Console.Commands;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared.Command;
+using System.IO;
 
 namespace RedSpect.Client.Console
 {
@@ -18,6 +19,7 @@ namespace RedSpect.Client.Console
     {
 
         const string BLOCK_COMMAND = ">>";
+        const string SCRIPT_COMMAND = ">!";
 
         private static Dictionary<string, ICommandGroup> _commandGroups = null;
         private static Dictionary<string, ICommand> _commands = null;
@@ -75,6 +77,14 @@ namespace RedSpect.Client.Console
             {
                 command = buildCommand();
             }
+
+            if (command.StartsWith(SCRIPT_COMMAND))
+            {
+                string file = command.Remove(0, 2).Trim();
+
+                command = loadCommand(file);
+            }
+
             try
             {
                 return InspectProvider.ExecuteScript(command);
@@ -83,6 +93,19 @@ namespace RedSpect.Client.Console
             {
                 return new ErrorResult(ex.Message);
             }
+        }
+
+        private static string loadCommand(string file)
+        {
+            string command = null;
+
+            using(var reader = new StreamReader(file))
+            {
+                command = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            return command;
         }
 
         private static string buildCommand()
@@ -94,6 +117,7 @@ namespace RedSpect.Client.Console
 
             while (!exit)
             {
+                //TODO: apply polymorphism pattern
                 System.Console.Write(string.Format(">> {0} ", count));
                 string lineCommand = System.Console.ReadLine();
                 if (lineCommand != BLOCK_COMMAND)

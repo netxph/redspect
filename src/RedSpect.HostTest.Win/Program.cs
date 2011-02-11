@@ -20,10 +20,8 @@ namespace RedSpect.HostTest.Win
             ApplicationProbe.RegisterCommands(new WindowsTestCommand());
 
             Dictionary<string, string> properties = new Dictionary<string, string>();
-            properties.Add("portName", "Diagnostics");
-            properties.Add("authorizedGroup", "Everyone");
 
-            ApplicationProbe.Start<TCPProbeProvider>(properties);
+            ApplicationProbe.Start<IPCProbeProvider>(properties);
             Application.Run(Injection.MainForm);
         }
     }

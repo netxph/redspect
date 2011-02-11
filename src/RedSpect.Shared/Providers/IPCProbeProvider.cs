@@ -7,6 +7,7 @@ using System.Runtime.Remoting.Channels;
 using System.Collections;
 using System.Runtime.Remoting.Channels.Ipc;
 using System.Runtime.Remoting;
+using RedSpect.Shared.Command;
 
 namespace RedSpect.Shared.Providers
 {
@@ -46,8 +47,8 @@ namespace RedSpect.Shared.Providers
             BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
 
             IDictionary ipcProperties = new Hashtable();
-            ipcProperties["portName"] = properties["portName"];
-            ipcProperties["authorizedGroup"] = properties["authorizedGroup"];
+            ipcProperties["portName"] = properties.GetProperty("portName", "Diagnostics");
+            ipcProperties["authorizedGroup"] = properties.GetProperty("authorizedGroup", "Everyone");
 
             ChannelServices.RegisterChannel(new IpcChannel(ipcProperties, clientProvider, serverProvider), false);
         }

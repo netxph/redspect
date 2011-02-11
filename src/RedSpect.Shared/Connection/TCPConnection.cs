@@ -18,7 +18,7 @@ namespace RedSpect.Shared.Connection
 
         public ICommandRunner Create(string[] properties)
         {
-            var uri = new Uri(string.Format("tcp://{0}:{1}/{2}", properties.GetArgument(0, "localhost"), properties.GetArgument(1, "10999"), properties.GetArgument(1, "InspectorService")));
+            var uri = new Uri(string.Format("tcp://{0}:{1}/{2}", properties.GetArgument(0, "localhost"), properties.GetArgument(1, "10999"), properties.GetArgument(2, "InspectorService")));
 
             return Activator.GetObject(typeof(ICommandRunner), uri.AbsoluteUri) as ICommandRunner;
         }

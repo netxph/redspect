@@ -4,15 +4,21 @@ h1. RedSpect
 
 h2. Current Version
 
-Release 1.0
+Release 1.1
 
 h2. Features
-* Permissive injection through IPC. Host application must run ApplicationProbe.Start()
+* Permissive injection through IPC and TCP remoting.
+
+IPC @ApplicationProbe.Start<IPCProbeProvider>(properties)@ => properties: portName
+TCP @ApplicationProbe.Start<TCPProbeProvider>(properties)@ => properties: port
+
+NOTE: properties is a string dictionary which you can set.
+
 * Supports .NET compiled scripts and IronRuby scripts
 
 h2. Requirements
 * Visual Studio 2010
-* Host must be compiled in .NET 4.0
+* Host must must be compiled with .NET 3.5 and 4.0
 
 h2. How to build
 
@@ -37,4 +43,3 @@ bc. [Command("SampleCommand")]
 public ActionResult SampleCommand(object args)
 
 #3 Add in your startup using @Application.RegisterCommands@
-

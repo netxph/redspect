@@ -23,5 +23,20 @@ namespace RedSpect.Shared.Command
             return GetArgument(arguments, index, string.Empty);
         }
 
+        public static string GetProperty(this IDictionary<string, string> properties, string key, string defaultValue)
+        {
+            if (properties.ContainsKey(key))
+            {
+                return properties[key];
+            }
+
+            return defaultValue;
+        }
+
+        public static string GetProperty(this IDictionary<string, string> properties, string key)
+        {
+            return GetProperty(properties, key, null);
+        }
+
     }
 }
