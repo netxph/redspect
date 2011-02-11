@@ -9,12 +9,12 @@ Release 1.1
 h2. Features
 * Permissive injection through IPC and TCP remoting.
 
-IPC @ApplicationProbe.Start<IPCProbeProvider>(properties)@ => properties: portName
-TCP @ApplicationProbe.Start<TCPProbeProvider>(properties)@ => properties: port
+bc. ApplicationProbe.Start<IPCProbeProvider>(properties) //properties: portName
+ApplicationProbe.Start<TCPProbeProvider>(properties) //properties: port
 
 NOTE: properties is a string dictionary which you can set.
 
-* Supports .NET compiled scripts and IronRuby scripts
+* Supports .NET compiled scripts and IronRuby scripts and script files
 
 h2. Requirements
 * Visual Studio 2010
@@ -43,3 +43,4 @@ bc. [Command("SampleCommand")]
 public ActionResult SampleCommand(object args)
 
 #3 Add in your startup using @Application.RegisterCommands@
+
