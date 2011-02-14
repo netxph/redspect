@@ -48,7 +48,7 @@ namespace RedSpect.Shared.Providers
             }
 
             TcpChannel tcpChannel = new TcpChannel(port);
-            ChannelServices.RegisterChannel(tcpChannel);
+            ChannelServices.RegisterChannel(tcpChannel, false);
         }
 
         public void Stop()

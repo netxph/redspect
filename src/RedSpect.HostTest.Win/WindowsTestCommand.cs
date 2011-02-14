@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared;
-using RedSpect.Shared.Command;
+using RedSpect.Shared.Contracts;
 using System.Windows.Forms;
 
 namespace RedSpect.HostTest.Win

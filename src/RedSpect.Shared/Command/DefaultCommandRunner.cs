@@ -5,7 +5,7 @@ using System.Text;
 using RedSpect.Shared.Interfaces;
 using System.Reflection;
 using System.IO;
-using RedSpect.Shared.Command;
+using RedSpect.Shared.Contracts;
 using IronRuby;
 
 namespace RedSpect.Shared

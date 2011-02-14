@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RedSpect.Shared.Command;
+using RedSpect.Shared.Contracts;
 
 namespace RedSpect.Shared.Interfaces
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace RedSpect.Shared.Command
+namespace RedSpect.Shared.Contracts
 {
     [DataContract]
     [Serializable]

@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using RedSpect.Shared.Interfaces;
 
-namespace RedSpect.Shared.Command
+namespace RedSpect.Shared.Contracts
 {
     public abstract class CommandGroupBase : ICommandGroup
     {

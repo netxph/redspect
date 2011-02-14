@@ -5,7 +5,7 @@ using System.Text;
 using RedSpect.Shared.Interfaces;
 using RedSpect.Shared.Connection;
 
-namespace RedSpect.Shared.Command
+namespace RedSpect.Shared
 {
     public class ProbeFactory
     {

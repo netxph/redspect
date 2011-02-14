@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace RedSpect.Shared.Command
+namespace RedSpect.Shared.Contracts
 {
     public class ResultBuilder
     {

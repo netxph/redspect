@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
 using RedSpect.Shared.Interfaces;
-using RedSpect.Shared.Command;
+using RedSpect.Shared.Contracts;
 using System.IO;
+using RedSpect.Shared;
 
 namespace RedSpect.Client.Console
 {

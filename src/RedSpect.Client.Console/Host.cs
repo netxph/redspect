@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedSpect.Client.Console.Commands;
-using RedSpect.Shared.Command;
+using RedSpect.Shared.Contracts;
 using System.Diagnostics;
 
 namespace RedSpect.Client.Console

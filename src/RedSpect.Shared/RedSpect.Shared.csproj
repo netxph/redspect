@@ -60,24 +60,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationProbe.cs" />
-    <Compile Include="Command\ActionResult.cs" />
+    <Compile Include="Contracts\ActionResult.cs" />
     <Compile Include="Command\ArgumentExtensions.cs" />
     <Compile Include="Command\Arguments.cs" />
     <Compile Include="Command\CommandAttribute.cs" />
     <Compile Include="Command\CommandDetail.cs" />
     <Compile Include="Command\CommandGroupBase.cs" />
-    <Compile Include="Command\ErrorResult.cs" />
+    <Compile Include="Contracts\ErrorResult.cs" />
     <Compile Include="Command\ExtendedConsoleTraceListener.cs" />
-    <Compile Include="Command\ProbeFactory.cs" />
+    <Compile Include="ProbeFactory.cs" />
     <Compile Include="Command\ResultBuilder.cs" />
-    <Compile Include="Command\TraceOutput.cs" />
+    <Compile Include="Contracts\TraceOutput.cs" />
     <Compile Include="Command\TraceWriter.cs" />
     <Compile Include="Connection\IPCConnection.cs" />
     <Compile Include="Connection\TCPConnection.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandGroup.cs" />
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="DefaultCommandRunner.cs" />
+    <Compile Include="Command\DefaultCommandRunner.cs" />
     <Compile Include="Interfaces\IInspectorCommandGroup.cs" />
     <Compile Include="Interfaces\ICommandRunner.cs" />
     <Compile Include="Interfaces\IProbeConnection.cs" />

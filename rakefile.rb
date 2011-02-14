@@ -1,3 +1,5 @@
+Dir.glob('rake/*.rake').each { |r| import r }
+
 desc 'default task'
 task :default => [:build]
 

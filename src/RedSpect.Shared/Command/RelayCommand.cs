@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using RedSpect.Shared.Interfaces;
 
-namespace RedSpect.Shared.Command
+namespace RedSpect.Shared.Contracts
 {
     public class RelayCommand : CommandDetail, ICommand
     {

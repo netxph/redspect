@@ -3,8 +3,9 @@
 *.swp
 *.suo
 
+rake
+package
 bin
 lib/*.dll
 **/**/bin
 **/**/obj
-
