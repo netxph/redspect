@@ -27,11 +27,21 @@ namespace RedSpect.Shared.Providers
 
         public void Start(IDictionary<string, string> properties)
         {
-            var tcpChannel = ChannelServices.RegisteredChannels.FirstOrDefault(channel => channel is TcpChannel);
+            bool registerChannel = true;
 
-            if (tcpChannel == null)
+            if (properties.ContainsKey("register-channel"))
             {
-                createTcpChannel(properties);
+                registerChannel = bool.Parse(properties["register-channel"]);
+            }
+
+            if (registerChannel)
+            {
+                var tcpChannel = ChannelServices.RegisteredChannels.FirstOrDefault(channel => channel is TcpChannel || channel is TcpClientChannel);
+
+                if (tcpChannel == null)
+                {
+                    createTcpChannel(properties);
+                }
             }
 
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(DefaultCommandRunner), "InspectorService", WellKnownObjectMode.Singleton);

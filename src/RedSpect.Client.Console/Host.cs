@@ -26,7 +26,7 @@ namespace RedSpect.Client.Console
                     System.Console.Write(CommandManager.Prompt);
                     command = System.Console.ReadLine();
 
-                    if (!string.IsNullOrWhiteSpace(command))
+                    if (!string.IsNullOrEmpty(command.Trim()))
                     {
                         ActionResult result = CommandManager.Execute(new Arguments(command));
 
