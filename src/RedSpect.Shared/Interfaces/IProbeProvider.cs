@@ -9,7 +9,7 @@ namespace RedSpect.Shared.Interfaces
     {
 
         string Name { get; }
-        void Start(IDictionary<string, string> properties);
+        void Start(IDictionary<string, string> properties, List<Type> customServices);
         void Stop();
         bool IsStarted { get; }
 

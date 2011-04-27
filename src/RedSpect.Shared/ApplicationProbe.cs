@@ -15,6 +15,7 @@ namespace RedSpect.Shared
 
         private static Dictionary<string, IInspectorCommandGroup> _inspectorCommands = new Dictionary<string,IInspectorCommandGroup>();
         private static IProbeProvider _probeProvider = null;
+        private static List<Type> _customServices = new List<Type>();
 
         public static IProbeProvider ProbeProvider
         { 
@@ -34,10 +35,15 @@ namespace RedSpect.Shared
             _inspectorCommands.Add(commandGroup.Name, commandGroup);
         }
 
+        public static void RegisterCustomService(Type serviceType)
+        {
+            _customServices.Add(serviceType);
+        }
+
         public static void Start<T>(IDictionary<string, string> properties) where T: IProbeProvider
         {
             _probeProvider = Activator.CreateInstance<T>();
-            _probeProvider.Start(properties);
+            _probeProvider.Start(properties, _customServices);
         }
 
         public static void Stop()

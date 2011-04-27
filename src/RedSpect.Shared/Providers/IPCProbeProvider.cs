@@ -26,7 +26,7 @@ namespace RedSpect.Shared.Providers
             get { return PROVIDER_NAME; }
         }
 
-        public void Start(IDictionary<string, string> properties)
+        public void Start(IDictionary<string, string> properties, List<Type> customServices)
         {
 
             var tcpChannel = ChannelServices.RegisteredChannels.FirstOrDefault(channel => channel is IpcChannel);

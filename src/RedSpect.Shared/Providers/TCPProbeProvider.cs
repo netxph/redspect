@@ -25,7 +25,7 @@ namespace RedSpect.Shared.Providers
             get { return PROVIDER_NAME; }
         }
 
-        public void Start(IDictionary<string, string> properties)
+        public void Start(IDictionary<string, string> properties, List<Type> customServices)
         {
             bool registerChannel = true;
 
@@ -45,6 +45,11 @@ namespace RedSpect.Shared.Providers
             }
 
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(DefaultCommandRunner), "InspectorService", WellKnownObjectMode.Singleton);
+
+            foreach (var customService in customServices)
+            {
+                RemotingConfiguration.RegisterWellKnownServiceType(customService, customService.Name, WellKnownObjectMode.SingleCall);
+            }
 
             _isStarted = true;
         }
