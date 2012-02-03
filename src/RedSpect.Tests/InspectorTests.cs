@@ -19,8 +19,9 @@ namespace RedSpect.Tests
                 string expected = "Hello World";
 
                 string command = "CSGetStaticMessage";
+                string commandType = "cs";
 
-                string actual = RedSpect.Tests.Inspector.Execute(command);
+                string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -31,8 +32,9 @@ namespace RedSpect.Tests
                 string expected = "ALERT!! ALERT!!";
 
                 string command = "CSGetStaticAlertMessage";
+                string commandType = "cs";
 
-                string actual = RedSpect.Tests.Inspector.Execute(command);
+                string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -42,9 +44,10 @@ namespace RedSpect.Tests
             {
                 string expected = "Hello World";
 
-                string command = "RSGetStaticMessage";
+                string command = "RedSpect.Tests.Constants.MESSAGE";
+                string commandType = "rs";
 
-                var actual = RedSpect.Tests.Inspector.Execute(command);
+                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -54,11 +57,115 @@ namespace RedSpect.Tests
             {
                 string expected = "ALERT!! ALERT!!";
 
-                string command = "RSGetStaticAlertMessage";
+                string command = "RedSpect.Tests.Constants.ALERT_MSG";
+                string commandType = "rs";
 
-                var actual = RedSpect.Tests.Inspector.Execute(command);
+                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
 
                 Assert.Equal<string>(expected, actual);
+            }
+
+            [Fact]
+            public void RubyRetrieveStaticMessageTest()
+            {
+                string expected = "Hello World";
+
+                string command = "RedSpect::Tests::Constants.MESSAGE";
+                string commandType = "rb";
+
+                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+
+                Assert.Equal<string>(expected, actual);
+            }
+
+            [Fact]
+            public void RubyRetrieveStaticAlertMessageTest()
+            {
+                string expected = "ALERT!! ALERT!!";
+
+                string command = "RedSpect::Tests::Constants.ALERT_MSG";
+                string commandType = "rb";
+
+                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+
+                Assert.Equal<string>(expected, actual);
+            }
+
+            [Fact]
+            public void RetrieveMessageEmptyCommandTest()
+            {
+                string command = "";
+                string commandType = "cs";
+
+                Assert.Throws(typeof(ArgumentNullException), () =>
+                {
+                    string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                });
+                
+            }
+
+            [Fact]
+            public void RetrieveMessageEmptyCommandTypeTest()
+            {
+                string command = "CSGetStaticMessage";
+                string commandType = string.Empty;
+
+                Assert.Throws(typeof(ArgumentNullException), () =>
+                {
+                    string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                });
+            }
+
+            [Fact]
+            public void OverloadTest()
+            {
+
+                string expected = "Hello World";
+
+                string command = "CSGetStaticMessage";
+
+                string actual = RedSpect.Tests.Inspector.Execute(command);
+
+                Assert.Equal<string>(expected, actual);
+
+            }
+
+            [Fact]
+            public void CommandNotFoundTest()
+            {
+                string command = "NotAValidCommand";
+
+                Assert.Throws(typeof(InvalidOperationException), () =>
+                {
+                    RedSpect.Tests.Inspector.Execute(command);
+                });
+            }
+
+            [Fact]
+            public void CommandTypeNotFoundTest()
+            {
+                string command = "CSGetStaticMessage";
+                string commandType = "xx";
+
+                Assert.Throws(typeof(NotSupportedException), () => 
+                {
+                    RedSpect.Tests.Inspector.Execute(command, commandType);
+                });
+
+            }
+
+            [Fact]
+            public void CommandExecutionFailed()
+            {
+                string command = "CSExceptionThrower";
+
+                var exception = Record.Exception(() =>
+                {
+                    RedSpect.Tests.Inspector.Execute(command);
+                });
+
+                Assert.NotNull(exception);
+                Assert.NotEqual(exception.GetType(), typeof(InvalidOperationException));
             }
 
         }
