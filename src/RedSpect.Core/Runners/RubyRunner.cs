@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Roslyn.Scripting.CSharp;
+using IronRuby;
 using System.Reflection;
 using System.ComponentModel.Composition;
 
 namespace RedSpect.Tests
 {
     [Export(typeof(IRunner))]
-    public class RoslynRunner : IRunner
+    public class RubyRunner : IRunner
     {
-
-        const string SUPPORTED_TYPE = "rs";
+        const string SUPPORTED_TYPE = "rb";
 
         public string SupportedType
         {
@@ -23,8 +22,19 @@ namespace RedSpect.Tests
         {
             if (CanExecute(context))
             {
-                var engine = new ScriptEngine(new[] { "System", Assembly.GetExecutingAssembly().Location });
-                string result = engine.Execute(context.Command).ToString();
+                //references
+                StringBuilder builder = new StringBuilder();
+                foreach (var reference in context.ReferenceAssemblies)
+                {
+                    builder.AppendFormat("require \"{0}\"\r\n", reference.Replace('\\', '/'));
+                }
+
+                builder.AppendLine(context.Command);
+
+                string script = builder.ToString();
+
+                var engine = Ruby.CreateEngine();
+                string result = engine.Execute<string>(script);
 
                 return result;
             }

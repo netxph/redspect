@@ -12,5 +12,7 @@ namespace RedSpect.Tests
         public string Type { get; set; }
 
         public string[] Arguments { get; set; }
+
+        public string[] ReferenceAssemblies { get; set; }
     }
 }

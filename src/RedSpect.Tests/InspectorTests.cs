@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
-using Roslyn.Scripting.CSharp;
 
 namespace RedSpect.Tests
 {
@@ -43,6 +42,7 @@ namespace RedSpect.Tests
                 string expected = "Hello World";
 
                 ExecutionContext context = new ExecutionContext() { Command = "RedSpect.Tests.Constants.MESSAGE", Type = "rs" };
+                context.ReferenceAssemblies = new string[] { this.GetType().Assembly.Location };
 
                 var actual = Inspector.Execute<string>(context);
 
@@ -55,6 +55,7 @@ namespace RedSpect.Tests
                 string expected = "ALERT!! ALERT!!";
 
                 ExecutionContext context = new ExecutionContext() { Command = "RedSpect.Tests.Constants.ALERT_MSG", Type = "rs" };
+                context.ReferenceAssemblies = new string[] { this.GetType().Assembly.Location };
 
                 var actual = Inspector.Execute<string>(context);
 
@@ -67,6 +68,7 @@ namespace RedSpect.Tests
                 string expected = "Hello World";
 
                 ExecutionContext context = new ExecutionContext() { Command = "RedSpect::Tests::Constants.MESSAGE", Type = "rb" };
+                context.ReferenceAssemblies = new string[] { this.GetType().Assembly.Location };
 
                 var actual = Inspector.Execute<string>(context);
 
@@ -79,6 +81,7 @@ namespace RedSpect.Tests
                 string expected = "ALERT!! ALERT!!";
 
                 ExecutionContext context = new ExecutionContext() { Command = "RedSpect::Tests::Constants.ALERT_MSG", Type = "rb" };
+                context.ReferenceAssemblies = new string[] { this.GetType().Assembly.Location };
 
                 var actual = Inspector.Execute<string>(context);
 

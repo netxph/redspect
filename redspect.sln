@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.Tests", "src\RedSpect.Tests\RedSpect.Tests.csproj", "{878C50A7-6345-4391-BDE8-5104CFB89DA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.Core", "src\RedSpect.Core\RedSpect.Core.csproj", "{D5273DA7-4B88-45AA-B6B3-9F555FA20E0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSpect.Shared", "src\RedSpect.Shared\RedSpect.Shared.csproj", "{EFC645A1-21C4-4764-BCF6-09EA71EDC2D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{878C50A7-6345-4391-BDE8-5104CFB89DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{878C50A7-6345-4391-BDE8-5104CFB89DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{878C50A7-6345-4391-BDE8-5104CFB89DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5273DA7-4B88-45AA-B6B3-9F555FA20E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5273DA7-4B88-45AA-B6B3-9F555FA20E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5273DA7-4B88-45AA-B6B3-9F555FA20E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5273DA7-4B88-45AA-B6B3-9F555FA20E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC645A1-21C4-4764-BCF6-09EA71EDC2D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC645A1-21C4-4764-BCF6-09EA71EDC2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC645A1-21C4-4764-BCF6-09EA71EDC2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC645A1-21C4-4764-BCF6-09EA71EDC2D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,6 +39,7 @@ namespace RedSpect.Tests
 
                 var runner = new RubyRunner();
                 ExecutionContext context = new ExecutionContext() { Command = "RedSpect::Tests::Constants.MESSAGE", Type = "rb" };
+                context.ReferenceAssemblies = new string[] { this.GetType().Assembly.Location };
 
                 string actual = runner.Execute(context).ToString();
 
