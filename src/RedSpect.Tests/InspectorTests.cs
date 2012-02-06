@@ -18,10 +18,9 @@ namespace RedSpect.Tests
             {
                 string expected = "Hello World";
 
-                string command = "CSGetStaticMessage";
-                string commandType = "cs";
+                ExecutionContext context = new ExecutionContext() { Command = "CSGetStaticMessage", Type = "cs" };
 
-                string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                string actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -31,10 +30,9 @@ namespace RedSpect.Tests
             {
                 string expected = "ALERT!! ALERT!!";
 
-                string command = "CSGetStaticAlertMessage";
-                string commandType = "cs";
+                ExecutionContext context = new ExecutionContext() { Command = "CSGetStaticAlertMessage", Type = "cs" };
 
-                string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                string actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -44,10 +42,9 @@ namespace RedSpect.Tests
             {
                 string expected = "Hello World";
 
-                string command = "RedSpect.Tests.Constants.MESSAGE";
-                string commandType = "rs";
+                ExecutionContext context = new ExecutionContext() { Command = "RedSpect.Tests.Constants.MESSAGE", Type = "rs" };
 
-                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                var actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -57,10 +54,9 @@ namespace RedSpect.Tests
             {
                 string expected = "ALERT!! ALERT!!";
 
-                string command = "RedSpect.Tests.Constants.ALERT_MSG";
-                string commandType = "rs";
+                ExecutionContext context = new ExecutionContext() { Command = "RedSpect.Tests.Constants.ALERT_MSG", Type = "rs" };
 
-                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                var actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -70,10 +66,9 @@ namespace RedSpect.Tests
             {
                 string expected = "Hello World";
 
-                string command = "RedSpect::Tests::Constants.MESSAGE";
-                string commandType = "rb";
+                ExecutionContext context = new ExecutionContext() { Command = "RedSpect::Tests::Constants.MESSAGE", Type = "rb" };
 
-                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                var actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -83,10 +78,9 @@ namespace RedSpect.Tests
             {
                 string expected = "ALERT!! ALERT!!";
 
-                string command = "RedSpect::Tests::Constants.ALERT_MSG";
-                string commandType = "rb";
+                ExecutionContext context = new ExecutionContext() { Command = "RedSpect::Tests::Constants.ALERT_MSG", Type = "rb" };
 
-                var actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                var actual = RedSpect.Tests.Inspector.Execute<string>(context);
 
                 Assert.Equal<string>(expected, actual);
             }
@@ -94,12 +88,12 @@ namespace RedSpect.Tests
             [Fact]
             public void RetrieveMessageEmptyCommandTest()
             {
-                string command = "";
-                string commandType = "cs";
+
+                ExecutionContext context = new ExecutionContext() { Command = "", Type = "cs" };
 
                 Assert.Throws(typeof(ArgumentNullException), () =>
                 {
-                    string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                    string actual = RedSpect.Tests.Inspector.Execute<string>(context);
                 });
                 
             }
@@ -107,12 +101,11 @@ namespace RedSpect.Tests
             [Fact]
             public void RetrieveMessageEmptyCommandTypeTest()
             {
-                string command = "CSGetStaticMessage";
-                string commandType = string.Empty;
+                ExecutionContext context = new ExecutionContext() { Command = "CSGetStaticMessage", Type = string.Empty };
 
                 Assert.Throws(typeof(ArgumentNullException), () =>
                 {
-                    string actual = RedSpect.Tests.Inspector.Execute(command, commandType);
+                    string actual = RedSpect.Tests.Inspector.Execute<string>(context);
                 });
             }
 
@@ -124,7 +117,7 @@ namespace RedSpect.Tests
 
                 string command = "CSGetStaticMessage";
 
-                string actual = RedSpect.Tests.Inspector.Execute(command);
+                string actual = RedSpect.Tests.Inspector.Execute<string>(command);
 
                 Assert.Equal<string>(expected, actual);
 
@@ -137,19 +130,18 @@ namespace RedSpect.Tests
 
                 Assert.Throws(typeof(InvalidOperationException), () =>
                 {
-                    RedSpect.Tests.Inspector.Execute(command);
+                    RedSpect.Tests.Inspector.Execute<string>(command);
                 });
             }
 
             [Fact]
             public void CommandTypeNotFoundTest()
             {
-                string command = "CSGetStaticMessage";
-                string commandType = "xx";
+                ExecutionContext context = new ExecutionContext() { Command = "CSGetStaticMessage", Type = "xx" };
 
                 Assert.Throws(typeof(NotSupportedException), () => 
                 {
-                    RedSpect.Tests.Inspector.Execute(command, commandType);
+                    RedSpect.Tests.Inspector.Execute(context);
                 });
 
             }
@@ -161,7 +153,7 @@ namespace RedSpect.Tests
 
                 var exception = Record.Exception(() =>
                 {
-                    RedSpect.Tests.Inspector.Execute(command);
+                    RedSpect.Tests.Inspector.Execute<string>(command);
                 });
 
                 Assert.NotNull(exception);

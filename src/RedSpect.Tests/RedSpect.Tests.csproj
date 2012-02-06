@@ -92,9 +92,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CSharpRunner.cs" />
+    <Compile Include="ExecutionContext.cs" />
     <Compile Include="Inspector.cs" />
     <Compile Include="InspectorTests.cs" />
+    <Compile Include="IRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoslynRunner.cs" />
+    <Compile Include="RubyRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="eula.rtf" />
