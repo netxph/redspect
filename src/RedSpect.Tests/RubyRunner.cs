@@ -4,21 +4,18 @@ using System.Linq;
 using System.Text;
 using IronRuby;
 using System.Reflection;
+using System.ComponentModel.Composition;
 
 namespace RedSpect.Tests
 {
+    [Export(typeof(IRunner))]
     public class RubyRunner : IRunner
     {
+        const string SUPPORTED_TYPE = "rb";
+
         public string SupportedType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return SUPPORTED_TYPE; }
         }
 
         public object Execute(ExecutionContext context)

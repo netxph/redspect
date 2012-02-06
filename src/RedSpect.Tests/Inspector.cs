@@ -5,11 +5,26 @@ using System.Text;
 using Roslyn.Scripting.CSharp;
 using System.Reflection;
 using IronRuby;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 
 namespace RedSpect.Tests
 {
     public class Inspector
     {
+
+        static Inspector()
+        {
+            RunnerContext runnerContext = new RunnerContext();
+            Runners = new Dictionary<string, IRunner>();
+
+            foreach (var runner in runnerContext.Runners)
+            {
+                Runners.Add(runner.SupportedType, runner);
+            }
+        }
+
+        public static Dictionary<string, IRunner> Runners { get; set; }
 
         public static T Execute<T>(string command)
         {
@@ -27,16 +42,13 @@ namespace RedSpect.Tests
             if (string.IsNullOrEmpty(context.Command)) throw new ArgumentNullException("Command is required.");
             if (string.IsNullOrEmpty(context.Type)) throw new ArgumentNullException("Command type is required.");
 
-            switch (context.Type)
+            if (Runners.ContainsKey(context.Type))
             {
-                case "cs":
-                    return new CSharpRunner().Execute(context);
-                case "rs":
-                    return new RoslynRunner().Execute(context);
-                case "rb":
-                    return new RubyRunner().Execute(context);
-                default:
-                    throw new NotSupportedException("Command type is not supported.");
+                return Runners[context.Type].Execute(context);
+            }
+            else
+            {
+                throw new NotSupportedException("Command type is not supported.");
             }
 
         }

@@ -8,7 +8,7 @@ namespace RedSpect.Tests
     public interface IRunner
     {
 
-        string SupportedType { get; set; }
+        string SupportedType { get; }
         object Execute(ExecutionContext context);
         bool CanExecute(ExecutionContext context);
 

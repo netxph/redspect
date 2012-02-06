@@ -4,21 +4,19 @@ using System.Linq;
 using System.Text;
 using Roslyn.Scripting.CSharp;
 using System.Reflection;
+using System.ComponentModel.Composition;
 
 namespace RedSpect.Tests
 {
+    [Export(typeof(IRunner))]
     public class RoslynRunner : IRunner
     {
+
+        const string SUPPORTED_TYPE = "rs";
+
         public string SupportedType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return SUPPORTED_TYPE; }
         }
 
         public object Execute(ExecutionContext context)

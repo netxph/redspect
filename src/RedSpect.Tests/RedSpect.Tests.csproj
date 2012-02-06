@@ -80,6 +80,7 @@
       <HintPath>..\..\packages\Roslyn.1.0.11014.5\lib\net40\Roslyn.Services.VisualBasic.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,15 +92,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCommandSet.cs" />
+    <Compile Include="CommandAttribute.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="CSharpRunner.cs" />
+    <Compile Include="CSharpRunnerTests.cs" />
     <Compile Include="ExecutionContext.cs" />
+    <Compile Include="ICommandSet.cs" />
     <Compile Include="Inspector.cs" />
     <Compile Include="InspectorTests.cs" />
     <Compile Include="IRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoslynRunner.cs" />
+    <Compile Include="RoslynRunnerTests.cs" />
     <Compile Include="RubyRunner.cs" />
+    <Compile Include="RubyRunnerTests.cs" />
+    <Compile Include="RunnerContext.cs" />
+    <Compile Include="TestCommandSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="eula.rtf" />

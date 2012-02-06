@@ -10,5 +10,7 @@ namespace RedSpect.Tests
         public string Command { get; set; }
 
         public string Type { get; set; }
+
+        public string[] Arguments { get; set; }
     }
 }
