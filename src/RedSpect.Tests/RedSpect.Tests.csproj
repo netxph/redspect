@@ -8,7 +8,7 @@
     <ProjectGuid>{878C50A7-6345-4391-BDE8-5104CFB89DA8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RedSpect.Tests</RootNamespace>
+    <RootNamespace>RedSpect.Core</RootNamespace>
     <AssemblyName>RedSpect.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

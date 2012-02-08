@@ -7,8 +7,9 @@ using System.Reflection;
 using IronRuby;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using RedSpect.Shared;
 
-namespace RedSpect.Tests
+namespace RedSpect.Core
 {
     public class Inspector
     {

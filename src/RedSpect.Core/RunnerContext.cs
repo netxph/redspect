@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
+using RedSpect.Shared;
 
-namespace RedSpect.Tests
+namespace RedSpect.Core
 {
     public class RunnerContext
     {

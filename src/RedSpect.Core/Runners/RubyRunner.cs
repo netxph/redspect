@@ -5,8 +5,9 @@ using System.Text;
 using IronRuby;
 using System.Reflection;
 using System.ComponentModel.Composition;
+using RedSpect.Shared;
 
-namespace RedSpect.Tests
+namespace RedSpect.Core.Runners
 {
     [Export(typeof(IRunner))]
     public class RubyRunner : IRunner

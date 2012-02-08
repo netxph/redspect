@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using RedSpect.Shared;
 
-namespace RedSpect.Tests
+namespace RedSpect.Core.Runners
 {
     [Export(typeof(IRunner))]
     public class CSharpRunner : IRunner

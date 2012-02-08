@@ -5,8 +5,9 @@ using System.Text;
 using Roslyn.Scripting.CSharp;
 using System.Reflection;
 using System.ComponentModel.Composition;
+using RedSpect.Shared;
 
-namespace RedSpect.Tests
+namespace RedSpect.Core.Runners
 {
     [Export(typeof(IRunner))]
     public class RoslynRunner : IRunner

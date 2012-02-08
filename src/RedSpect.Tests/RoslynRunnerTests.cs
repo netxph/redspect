@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
+using RedSpect.Shared;
+using RedSpect.Core.Runners;
 
 namespace RedSpect.Tests
 {
