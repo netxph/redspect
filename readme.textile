@@ -1,8 +1,28 @@
-h1. redspect edge
+h1. .redspect
 
-version 2.0
 
-h2. features
+Application inspection tool for .net. It is permissive, provides helper methods to open a communication port from client. You can create your custom commands through compiled C#, or direct scripting through Roslyn and Ruby.
 
-coming soon...
+h2. .version 
 
+2.0-edge-beta
+
+h2. .features
+
+* Helpers for hosting and connecting, using WCF named pipes.
+* Support for compiled C#, Roslyn and IronRuby for command extensibility
+
+h2. .usage
+
+hosting
+
+bc. Probe.Start() //starts server
+Probe.Stop() //stops server
+
+creating the service
+
+bc. ProbeClient.Create()
+
+h2. .more_to_come
+
+Feel free to leave me a message here if you have some suggestions in mind.
