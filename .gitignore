@@ -1,5 +1,7 @@
 #Private files and projects
 [Ss]rc/[Pp]rivate/
+*.[Pp]rivate.sln
+private.rake
 
 #Package files
 Raisins.Client.Web.Publish.xml

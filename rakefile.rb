@@ -1,14 +1,18 @@
+Dir.glob('*.rake').each do |r|
+  import r
+end
+
 desc 'default'
 task :default => [:build]
 
 desc 'build'
 task :build do
-  sh 'msbuild'
+  sh 'msbuild redspect.sln'
 end
 
 desc 'rebuild'
 task :rebuild do
-  sh 'msbuild /t:clean;rebuild'
+  sh 'msbuild redspect.sln /t:clean;rebuild'
 end
 
 desc 'test'
